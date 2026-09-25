@@ -100,6 +100,7 @@ I turn slow, manual work into software that runs on its own: **RPA bots**, **Pyt
 
 ### 🎓 Education
 
+- **MS, Computer Science**, University of Mumbai (2023 to 2025)
 - **BE, Electronics & Telecommunications**, NES's Gangamai College of Engineering (2008 to 2014)
 
 ---
