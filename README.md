@@ -1,7 +1,7 @@
 <h1 align="center">Hi, I'm Ismail Shaikh 👋</h1>
 
 <p align="center">
-  <b>Python Developer · RPA Specialist · Building with Generative AI & Agentic AI</b><br>
+  <b>Senior AI Engineer · Agentic AI · AI Solution Architecture</b><br>
   Mumbai, India
 </p>
 
@@ -15,23 +15,23 @@
 
 ### 🧑‍💻 About me
 
-I turn slow, manual work into software that runs on its own: **RPA bots**, **Python backends** and **AI workflows** that read, sort and route information.
+I design and ship **AI agents** that read, decide and act, and take them from business requirements to production with guardrails, observability and cost in mind.
 
-- 🛠️ **10+ years** making operations faster through practical, scalable automation
-- 🤖 Take processes from first discussion to a running bot: assess, design (PDD), build, document (SDD)
-- 🐍 Build backends with **Django, Flask and FastAPI** on PostgreSQL, MySQL and MS SQL
-- 🧠 Currently going deep on **Generative AI and Agentic AI**: RAG with LangChain, MCP and AI agent patterns
+- 🧠 Designed and built an **agentic AI platform in production** that cut daily security-advisory triage from 2 hours to about a minute (LLM extraction, LLM-as-Judge, human-in-the-loop)
+- 📄 Built a **production RAG solution** over complex technical PDFs that answers questions and drafts HLD/LLD designs
+- 👥 **Team lead** for 4–6 engineers; **12 years** across embedded systems, RPA and Python backends
+- 🐍 Backends with **Django, FastAPI and Flask** on PostgreSQL, MySQL and MS SQL
+- 🤖 Before AI: **25+ automations** delivered with Automation Anywhere, UiPath and Power Automate
 - 🔌 Started out in electronics, designing embedded and IoT systems
-- 🌐 Building a hub of free browser tools at **[shaikhismail.com](https://shaikhismail.com)**
 - 💬 English, Hindi, Urdu
 
 ---
 
-### 🔄 How I automate a process
+### 🔄 How I take an AI use case to production
 
-| 1. Assess | 2. Design | 3. Build | 4. Hand over |
+| 1. Assess | 2. Design | 3. Build | 4. Run |
 |---|---|---|---|
-| Map every step with the people doing the work and pick what saves the most time | Write the PDD, agree on rules and exceptions, plan for messy data | Develop in Automation Anywhere, UiPath or Power Automate, with Python or VBA where needed | Test on real cases, document in an SDD, keep it running as the process changes |
+| Map every step with the people doing the work and pick where AI or automation saves the most time | Choose the architecture, plan for messy data, decide where an AI check or human review is needed, estimate cost | Agents, retrieval and APIs, with tracing from day one | Test on real cases, document, hand over and keep improving |
 
 ---
 
@@ -54,7 +54,13 @@ I turn slow, manual work into software that runs on its own: **RPA bots**, **Pyt
 ![Power Query](https://img.shields.io/badge/Power_Query-F2C811?style=flat-square&logoColor=black)
 ![C#](https://img.shields.io/badge/C%23_/_VB.NET-512BD4?style=flat-square&logo=dotnet&logoColor=white)
 
-**GenAI & AI automation**<br>
+**GenAI & agents**<br>
+![LangGraph](https://img.shields.io/badge/LangGraph-1C3C3C?style=flat-square&logo=langgraph&logoColor=white)
+![CrewAI](https://img.shields.io/badge/CrewAI-FF5A50?style=flat-square)
+![LlamaIndex](https://img.shields.io/badge/LlamaIndex-6E40C9?style=flat-square)
+![Docling](https://img.shields.io/badge/Docling-2F6FEB?style=flat-square)
+![Arize Phoenix](https://img.shields.io/badge/Arize_Phoenix-EE4B2B?style=flat-square)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI_API-412991?style=flat-square&logo=openai&logoColor=white)
 ![Ollama](https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white)
@@ -79,8 +85,10 @@ I turn slow, manual work into software that runs on its own: **RPA bots**, **Pyt
 
 | Project | What it does | Stack |
 |---|---|---|
-| **Document Q&A with RAG** | Ask questions about your own documents. LangChain retrieves the most relevant passages and an LLM answers from them. My base for learning AI agent patterns. *(ongoing)* | Python, LangChain, OpenAI API |
-| **[shaikhismail.com](https://shaikhismail.com)** | Personal site and a growing hub of free browser tools, each on its own subdomain | HTML, CSS, JavaScript |
+| **AI Vulnerability Automation Platform** *(enterprise, in production)* | Ingests CERT advisories, extracts them with LLMs, verifies with LLM-as-Judge and human review, matches customer assets and routes to owning teams. Daily triage: 2 h → ~1 min | Python, Django, LLMs |
+| **Enterprise Document RAG Solution** *(enterprise, in production)* | Answers from technical PDFs with multi-page tables; drafts HLD/LLD designs | LangChain, LlamaIndex, vector DB |
+| **[Full-Stack Document RAG Platform](https://github.com/mdism/doc_rag)** *(open source)* | Self-hosted RAG stack from parsing to tracing | Docling, LlamaIndex, CrewAI, PostgreSQL, Ollama, Arize Phoenix, OpenWebUI |
+| **[shaikhismail.com](https://shaikhismail.com)** | Portfolio, resume and free browser tools | HTML, CSS, JavaScript |
 
 ---
 
@@ -90,21 +98,23 @@ I turn slow, manual work into software that runs on its own: **RPA bots**, **Pyt
 
 ### 📜 Certifications
 
+- Databricks Academy: Generative AI Fundamentals · GenAI Application Evaluation and Governance · GenAI Application Deployment and Monitoring · Building Retrieval Agents · Building Single-Agent Applications
+- Anthropic Academy: Introduction to Model Context Protocol · Claude Code in Action
+- LangChain Academy: Introduction to LangChain (Python) · Introduction to Deep Agents *(in progress)*
+- Hugging Face: AI Agents Course *(in progress)*
 - Certified Advanced RPA Professional (Automation 360), Automation Anywhere (2023)
 - Document Automation Masterclass, Automation Anywhere (2024)
 - RPA Developer Foundation Diploma, UiPath
 - CS50 Python Certificate (2023)
 - Python for Data Science, AI & Development, IBM on Coursera
-- Python (Basic & Intermediate) Role Certification, HackerRank
-- PCEP, Certified Entry-Level Python Programmer, Python Institute *(in progress)*
 
 ### 🎓 Education
 
-- **MS, Computer Science**, University of Mumbai (2023 to 2025)
-- **BE, Electronics & Telecommunications**, NES's Gangamai College of Engineering (2008 to 2014)
+- **MSc, Computer Science**, University of Mumbai (2026)
+- **BE, Electronics & Telecommunications**, NES's Gangamai College of Engineering (2014)
 
 ---
 
 <p align="center">
-  <i>Always happy to talk automation, Python or AI. Say hello at <a href="mailto:hello@shaikhismail.com">hello@shaikhismail.com</a>.</i>
+  <i>Always happy to talk AI agents, automation or Python. Resume and work at <a href="https://shaikhismail.com">shaikhismail.com</a>. Say hello at <a href="mailto:hello@shaikhismail.com">hello@shaikhismail.com</a>.</i>
 </p>
