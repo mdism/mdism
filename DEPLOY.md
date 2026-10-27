@@ -35,3 +35,16 @@ resume/                        Editable Word versions (not published)
 ## Publishing an update
 
 cPanel → Git Version Control → Manage → **Pull or Deploy** → *Update from Remote*, then *Deploy HEAD Commit*.
+
+## Versioning
+
+The footer shows the site version from `site/version.json` and links to `CHANGELOG.md`.
+Before each release, run from the repo root:
+
+```
+python scripts/bump_version.py 2.2.0 "What changed"
+```
+
+It updates `site/version.json`, adds a `CHANGELOG.md` entry, and sets `?v=2.2.0` on the CSS/JS links
+so visitors' browsers load the new files. Then commit, push, and deploy.
+Use MAJOR for a redesign, MINOR for new sections or features, PATCH for fixes and content updates.
