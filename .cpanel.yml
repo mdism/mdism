@@ -1,7 +1,6 @@
 ---
 # MilesWeb (cPanel) deployment for shaikhismail.com
 # Publishes ONLY the site/ folder. README.md, resume/ sources and .git stay private.
-# Before the first deploy: replace CPANEL_USERNAME below with your cPanel username.
 deployment:
   tasks:
     - export DEPLOYPATH=//home/qyotupjl/public_html/
