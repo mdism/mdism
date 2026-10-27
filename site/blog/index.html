@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blog — Ismail Shaikh</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Notes by Ismail Shaikh on building AI agents, RAG and automation in production. Coming soon.">
+<link rel="canonical" href="https://shaikhismail.com/blog/">
+<meta name="theme-color" content="#155E3B">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23155E3B'/><text x='50' y='68' font-size='58' text-anchor='middle' fill='%23F5821F' font-family='monospace' font-weight='bold'>i</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="../assets/css/site.css?v=2.2.0">
+</head>
+<body data-base="../">
+
+<header class="site">
+  <nav class="wrap nav" aria-label="Main">
+    <a href="../" class="logo"><span>shaikhismail</span><i>_</i></a>
+    <ul id="menu">
+      <li><a href="../#work">Work</a></li>
+      <li><a href="../#experience">Experience</a></li>
+      <li><a href="../#resume">Resume</a></li>
+      <li><a href="../#contact">Contact</a></li>
+      <li><a href="../tools/">Tools</a></li>
+      <li><a href="./" aria-current="page">Blog</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="icon-btn cmd-btn" id="cmdBtn" aria-label="Open command menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-5-6-5M12 19h8"/></svg>
+        <span class="kbd lbl">Ctrl K</span>
+      </button>
+      <button class="icon-btn" id="themeBtn" aria-label="Switch light or dark theme">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="prompt" aria-hidden="true"><span class="u">guest</span>@<span class="d">shaikhismail</span>:~$ ls blog/<span class="caret"></span></div>
+      <h1>Blog</h1>
+      <p>Notes from building AI agents, RAG and automation that run in production: what worked, what broke, and the trade-offs behind each decision.</p>
+      <span class="soon-pill"><span class="dot"></span>First posts coming soon</span>
+    </div>
+  </section>
+  <section style="padding-top:48px">
+    <div class="wrap">
+      <h2 class="sub">In the drafts folder</h2>
+      <ul class="drafts">
+        <li><span class="st"><b>Drafting</b></span><div><h3>Adding an LLM-as-Judge step to an extraction pipeline</h3><p>Why a second model checks the first one's output, and where a human still needs to review.</p></div></li>
+        <li><span class="st"><b>Drafting</b></span><div><h3>RAG over PDFs with tables that run across pages</h3><p>Chunking so that table rows keep their headers, and what that does to answer quality.</p></div></li>
+        <li><span class="st">Planned</span><div><h3>Local or hosted LLMs for an internal RAG tool</h3><p>Thinking through hosting, cost and performance before a pilot goes live.</p></div></li>
+        <li><span class="st">Planned</span><div><h3>From RPA bots to AI agents</h3><p>What carries over from years of process automation, and what changes when the logic lives in a model.</p></div></li>
+      </ul>
+      <div class="follow">
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/iamismail" target="_blank" rel="noopener">Follow on LinkedIn</a>
+        <a class="btn btn-quiet" href="../#work">See my work</a>
+        <span>New posts will be announced on LinkedIn.</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> Mohammed Ismail Shaikh · <a id="ver" class="ver" href="https://github.com/mdism/mdism/blob/main/CHANGELOG.md" target="_blank" rel="noopener" title="What changed in this version">v2.2.0</a></span>
+    <span><a href="../">Back to shaikhismail.com</a></span>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js?v=2.2.0"></script>
+</body>
+</html>

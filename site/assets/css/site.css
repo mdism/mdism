@@ -448,3 +448,16 @@ footer.site a { color: var(--ink-soft); }
 /* ============ VERSION (footer) ============ */
 footer.site .ver { text-decoration: none; font-variant-numeric: tabular-nums; border-bottom: 1px dotted var(--line); }
 footer.site .ver:hover { color: var(--green); border-bottom-color: var(--green); }
+
+/* ============ BLOG (coming soon) ============ */
+.soon-pill { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 12px; font-weight: 700; color: var(--orange); border: 1px dashed var(--orange); border-radius: 999px; padding: 4px 12px; }
+.soon-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); animation: blink 1.4s steps(1) infinite; }
+.drafts { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.drafts li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.drafts .st { font-size: 12px; color: var(--ink-soft); }
+.drafts .st b { color: var(--orange); font-weight: 700; }
+.drafts h3 { margin: 0 0 4px; font-size: 17px; letter-spacing: -.01em; }
+.drafts p { margin: 0; font-size: 13px; color: var(--ink-soft); max-width: 70ch; }
+.follow { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.follow span { font-size: 13px; color: var(--ink-soft); }
+@media (max-width: 560px) { .drafts li { grid-template-columns: minmax(0, 1fr); gap: 4px; } }

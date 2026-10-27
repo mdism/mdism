@@ -105,7 +105,7 @@
     { label: 'Download resume', hint: 'PDF', go: base + 'resume/Mohammed-Ismail-Shaikh_Senior-AI-Engineer.pdf', download: true },
     { label: 'Contact', hint: 'Email & profiles', go: base + '#contact' },
     { label: 'Free tools', hint: 'Browser tools', go: base + 'tools/' },
-    { label: 'Blog', hint: 'blog.shaikhismail.com', go: 'https://blog.shaikhismail.com/', ext: true },
+    { label: 'Blog', hint: 'Notes on AI agents & RAG', go: base + 'blog/' },
     { label: 'GitHub', hint: 'github.com/mdism', go: 'https://github.com/mdism', ext: true },
     { label: 'LinkedIn', hint: 'linkedin.com/in/iamismail', go: 'https://www.linkedin.com/in/iamismail', ext: true },
     { label: 'Copy email', hint: 'hello@shaikhismail.com', run: copyEmail },
