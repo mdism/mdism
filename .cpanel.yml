@@ -4,5 +4,5 @@
 # Before the first deploy: replace CPANEL_USERNAME below with your cPanel username.
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/CPANEL_USERNAME/public_html/
+    - export DEPLOYPATH=//home/qyotupjl/public_html/
     - /bin/cp -R site/. $DEPLOYPATH
