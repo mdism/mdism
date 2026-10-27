@@ -20,7 +20,7 @@
     } catch (e) {}
   })();
 </script>
-<link rel="stylesheet" href="../assets/css/site.css?v=2.2.0">
+<link rel="stylesheet" href="../assets/css/site.css?v=2.3.0">
 </head>
 <body data-base="../">
 
@@ -56,7 +56,7 @@
     <div class="wrap">
       <div class="prompt" aria-hidden="true"><span class="u">guest</span>@<span class="d">shaikhismail</span>:~$ ls tools/</div>
       <h1>Free tools</h1>
-      <p>Small browser tools I build in my spare time. Each one runs on its own subdomain, and your files stay on your device.</p>
+      <p>Small browser tools I build in my spare time. They all live at <a href="https://tools.shaikhismail.com/" target="_blank" rel="noopener">tools.shaikhismail.com</a>, the code is open on GitHub, and your files stay on your device.</p>
     </div>
   </section>
   <section style="padding-top:48px">
@@ -68,7 +68,7 @@
 
 <footer class="site">
   <div class="wrap">
-    <span>&copy; <span id="yr">2026</span> Mohammed Ismail Shaikh · <a id="ver" class="ver" href="https://github.com/mdism/mdism/blob/main/CHANGELOG.md" target="_blank" rel="noopener" title="What changed in this version">v2.2.0</a></span>
+    <span>&copy; <span id="yr">2026</span> Mohammed Ismail Shaikh · <a id="ver" class="ver" href="https://github.com/mdism/mdism/blob/main/CHANGELOG.md" target="_blank" rel="noopener" title="What changed in this version">v2.3.0</a></span>
     <span><a href="../">Back to shaikhismail.com</a></span>
   </div>
 </footer>
@@ -77,14 +77,15 @@
 /* =========================================================
    TOOLS LIST: to add a tool, copy one line and edit it.
    status: "live" shows a link, "soon" shows a placeholder.
+   repo: optional GitHub link, shown as "Source" on live tools.
    ========================================================= */
 window.TOOLS = [
-  { name: "Image Compressor", icon: "Im", desc: "Shrink JPG and PNG files right in your browser. Nothing is uploaded.", url: "https://img.shaikhismail.com", status: "soon" },
-  { name: "PDF Merge & Split", icon: "Pd", desc: "Combine PDFs into one, or pull out the pages you need.", url: "https://pdf.shaikhismail.com", status: "soon" },
-  { name: "Exam Photo Resizer", icon: "Ph", desc: "Resize photos and signatures to exact KB and pixel sizes for exam forms.", url: "https://photo.shaikhismail.com", status: "soon" },
-  { name: "GST & EMI Calculator", icon: "₹", desc: "Quick GST, EMI and SIP calculations with clear breakdowns.", url: "https://calc.shaikhismail.com", status: "soon" },
+  { name: "Image Compressor", icon: "Im", desc: "Shrink JPG and PNG files right in your browser. Nothing is uploaded.", url: "https://tools.shaikhismail.com/image-compressor/", repo: "https://github.com/mdism/image-compressor", status: "live" },
+  { name: "PDF Merge & Split", icon: "Pd", desc: "Combine PDFs into one, or pull out the pages you need.", url: "https://tools.shaikhismail.com/pdf-merge-split/", repo: "https://github.com/mdism/pdf-merge-split", status: "live" },
+  { name: "Exam Photo Resizer", icon: "Ph", desc: "Resize photos and signatures to exact KB and pixel sizes for exam forms.", url: "https://tools.shaikhismail.com/exam-photo-resizer/", repo: "https://github.com/mdism/exam-photo-resizer", status: "live" },
+  { name: "GST & EMI Calculator", icon: "₹", desc: "Quick GST, EMI and SIP calculations with clear breakdowns.", url: "https://tools.shaikhismail.com/gst-emi-calculator/", repo: "https://github.com/mdism/gst-emi-calculator", status: "live" },
 ];
 </script>
-<script src="../assets/js/site.js?v=2.2.0"></script>
+<script src="../assets/js/site.js?v=2.3.0"></script>
 </body>
 </html>

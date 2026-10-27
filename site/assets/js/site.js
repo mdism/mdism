@@ -191,15 +191,15 @@
   if (grid && window.TOOLS) {
     grid.innerHTML = window.TOOLS.map(t => {
       const live = t.status === 'live';
-      const host = t.url.replace(/^https?:\/\//, '');
-      const tag = live ? 'a' : 'div';
-      const attrs = live ? `href="${t.url}" target="_blank" rel="noopener"` : '';
-      return `<${tag} class="tool ${live ? '' : 'soon'}" ${attrs}>
+      const host = t.url.replace(/^https?:\/\/tools\.shaikhismail\.com/, '').replace(/^https?:\/\//, '');
+      const title = live ? `<a class="go" href="${t.url}" target="_blank" rel="noopener">${t.name}</a>` : t.name;
+      const src = live && t.repo ? `<a class="src" href="${t.repo}" target="_blank" rel="noopener">Source</a>` : '';
+      return `<div class="tool ${live ? 'live' : 'soon'}">
         <div class="ico">${t.icon}</div>
-        <h3>${t.name}</h3>
+        <h3>${title}</h3>
         <p>${t.desc}</p>
-        <div class="meta"><span class="url">${host}</span><span class="badge ${live ? 'live' : 'soon'}">${live ? 'Live' : 'Coming soon'}</span></div>
-      </${tag}>`;
+        <div class="meta"><span class="url">${host}</span>${src}<span class="badge ${live ? 'live' : 'soon'}">${live ? 'Live' : 'Coming soon'}</span></div>
+      </div>`;
     }).join('');
   }
 })();

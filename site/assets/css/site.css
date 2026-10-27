@@ -350,7 +350,11 @@ header.site {
   padding: 22px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line);
   text-decoration: none; min-height: 172px;
 }
-a.tool:hover { border-color: var(--green); }
+.tool.live:hover { border-color: var(--green); }
+.tool .go { text-decoration: none; }
+.tool .go::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.tool .src { position: relative; z-index: 1; margin-left: auto; color: var(--green); font-weight: 700; text-decoration: none; }
+.tool .src:hover { text-decoration: underline; }
 .tool .ico { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: color-mix(in srgb, var(--green) 14%, transparent); color: var(--green); font-weight: 800; font-size: 15px; }
 .tool h3 { margin: 0; font-size: 16px; font-weight: 700; }
 .tool p { margin: 0; font-size: 13px; color: var(--ink-soft); flex: 1; }
