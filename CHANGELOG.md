@@ -4,6 +4,9 @@ All notable changes to shaikhismail.com. Versions follow MAJOR.MINOR.PATCH:
 MAJOR for a redesign, MINOR for new sections or features, PATCH for fixes and content updates.
 Update with `python scripts/bump_version.py <version> "<notes>"`.
 
+## [2.2.0] - 2026-10-27
+- Blog page (coming soon) replaces the broken blog link
+
 ## [2.1.0] - 2026-10-27
 - Version shown in the footer, with this changelog
 - Resume: removed the blank second page; preview image refreshed
