@@ -3,5 +3,5 @@
 # Publishes ONLY the site/ folder. README.md, resume/ sources and .git stay private.
 deployment:
   tasks:
-    - export DEPLOYPATH=$HOME/public_html/
+    - export DEPLOYPATH=//home/qyotupjl/public_html/
     - /bin/cp -R site/. $DEPLOYPATH
