@@ -5,7 +5,8 @@ MAJOR for a redesign, MINOR for new sections or features, PATCH for fixes and co
 Update with `python scripts/bump_version.py <version> "<notes>"`.
 
 ## [2.1.0] - 2026-10-27
-- Version shown in the footer; resume preview refreshed
+- Version shown in the footer, with this changelog
+- Resume: removed the blank second page; preview image refreshed
 
 ## [2.0.1] - 2026-10-27
 - Resumes switched to Pine green to match the website
