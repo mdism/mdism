@@ -34,6 +34,21 @@
   const yr = $('#yr');
   if (yr) yr.textContent = new Date().getFullYear();
 
+  /* ============ VERSION (footer, from version.json) ============ */
+  const ver = $('#ver');
+  if (ver) {
+    fetch((document.body.dataset.base || '') + 'version.json', { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : null)
+      .then(v => {
+        if (!v || !v.version) return;
+        const d = new Date(v.date + 'T00:00:00');
+        const when = isNaN(d) ? v.date : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        ver.textContent = 'v' + v.version + ' · ' + when;
+        if (v.notes) ver.title = v.notes;
+      })
+      .catch(() => {});
+  }
+
   /* ============ HERO PROMPT TYPING ============ */
   const typed = $('#typed');
   if (typed) {
