@@ -27,11 +27,10 @@ resume/                        Editable Word versions (not published)
 ## Publishing on MilesWeb (cPanel), one-time setup
 
 1. Back up the current live site: cPanel → File Manager → `public_html` → select all → Compress → download the zip.
-2. In `.cpanel.yml`, replace `CPANEL_USERNAME` with your cPanel username and commit.
-3. cPanel → **Git Version Control** → Create → turn on **Clone a Repository**:
+2. cPanel → **Git Version Control** → Create → turn on **Clone a Repository**:
    - Clone URL: `https://github.com/mdism/mdism.git`
    - Repository path: something outside public_html, e.g. `repositories/mdism`
-4. After it clones, open **Manage → Pull or Deploy**.
+3. After it clones, open **Manage → Pull or Deploy**.
 
 ## Publishing an update
 
