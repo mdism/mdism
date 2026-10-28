@@ -34,6 +34,21 @@
   const yr = $('#yr');
   if (yr) yr.textContent = new Date().getFullYear();
 
+  /* ============ VERSION (footer, from version.json) ============ */
+  const ver = $('#ver');
+  if (ver) {
+    fetch((document.body.dataset.base || '') + 'version.json', { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : null)
+      .then(v => {
+        if (!v || !v.version) return;
+        const d = new Date(v.date + 'T00:00:00');
+        const when = isNaN(d) ? v.date : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        ver.textContent = 'v' + v.version + ' · ' + when;
+        if (v.notes) ver.title = v.notes;
+      })
+      .catch(() => {});
+  }
+
   /* ============ HERO PROMPT TYPING ============ */
   const typed = $('#typed');
   if (typed) {
@@ -90,7 +105,7 @@
     { label: 'Download resume', hint: 'PDF', go: base + 'resume/Mohammed-Ismail-Shaikh_Senior-AI-Engineer.pdf', download: true },
     { label: 'Contact', hint: 'Email & profiles', go: base + '#contact' },
     { label: 'Free tools', hint: 'Browser tools', go: base + 'tools/' },
-    { label: 'Blog', hint: 'blog.shaikhismail.com', go: 'https://blog.shaikhismail.com/', ext: true },
+    { label: 'Blog', hint: 'Notes on AI agents & RAG', go: base + 'blog/' },
     { label: 'GitHub', hint: 'github.com/mdism', go: 'https://github.com/mdism', ext: true },
     { label: 'LinkedIn', hint: 'linkedin.com/in/iamismail', go: 'https://www.linkedin.com/in/iamismail', ext: true },
     { label: 'Copy email', hint: 'hello@shaikhismail.com', run: copyEmail },
