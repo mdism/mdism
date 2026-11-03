@@ -1,0 +1,17 @@
+diff --git a/site/tools/index.html b/site/tools/index.html
+index ec82b04..1c06677 100644
+--- a/site/tools/index.html
++++ b/site/tools/index.html
+@@ -83,9 +83,12 @@ window.TOOLS = [
+   { name: "Image Compressor", icon: "Im", desc: "Shrink JPG and PNG files right in your browser. Nothing is uploaded.", url: "https://tools.shaikhismail.com/image-compressor/", repo: "https://github.com/mdism/image-compressor", status: "live" },
+   { name: "PDF Merge", icon: "Mg", desc: "Combine PDFs into one file, and compress or enhance the result. Scanned or digital.", url: "https://tools.shaikhismail.com/pdf-merge/", repo: "https://github.com/mdism/pdf-merge", status: "live" },
+   { name: "PDF Split", icon: "Sp", desc: "Split a PDF into pages or ranges, and compress or enhance the result. Scanned or digital.", url: "https://tools.shaikhismail.com/pdf-split/", repo: "https://github.com/mdism/pdf-split", status: "live" },
++  { name: "PDF to Image", icon: "P→", desc: "Turn every page of a PDF into a JPG or PNG image, right in your browser.", url: "https://tools.shaikhismail.com/pdf-to-image/", repo: "https://github.com/mdism/pdf-to-image", status: "live" },
++  { name: "Image to PDF", icon: "→P", desc: "Turn photos and scans into a PDF. Arrange and rotate them first, all in your browser.", url: "https://tools.shaikhismail.com/image-to-pdf/", repo: "https://github.com/mdism/image-to-pdf", status: "live" },
+   { name: "PDF Merge & Split", icon: "Pd", desc: "Combine PDFs into one, or pull out the pages you need.", url: "https://tools.shaikhismail.com/pdf-merge-split/", repo: "https://github.com/mdism/pdf-merge-split", status: "live" },
+   { name: "Exam Photo Resizer", icon: "Ph", desc: "Resize photos and signatures to exact KB and pixel sizes for exam forms.", url: "https://tools.shaikhismail.com/exam-photo-resizer/", repo: "https://github.com/mdism/exam-photo-resizer", status: "live" },
+   { name: "GST & EMI Calculator", icon: "₹", desc: "Quick GST, EMI and SIP calculations with clear breakdowns.", url: "https://tools.shaikhismail.com/gst-emi-calculator/", repo: "https://github.com/mdism/gst-emi-calculator", status: "live" },
++  { name: "Age Calculator", icon: "Ag", desc: "Find your exact age in years, months, days, hours, minutes and seconds.", url: "https://tools.shaikhismail.com/age-calculator/", repo: "https://github.com/mdism/age-calculator", status: "live" },
+ ];
+ </script>
+ <script src="../assets/js/site.js?v=2.4.0"></script>
