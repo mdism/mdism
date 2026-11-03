@@ -203,3 +203,22 @@
     }).join('');
   }
 })();
+
+
+const lastUpdatedSpan = Array.from(document.querySelectorAll('div span')).find(
+  el => el.textContent.trim() === 'Last updated'
+);
+
+if (lastUpdatedSpan) {
+  // Find the bold tag right next to it
+  const dateElement = lastUpdatedSpan.nextElementSibling;
+  
+  if (dateElement && dateElement.tagName === 'B') {
+    // Get current month and year
+    const options = { month: 'long', year: 'numeric' };
+    const today = new Date().toLocaleDateString('en-US', options); // e.g., "November 2026"
+    
+    // Insert today's date
+    dateElement.textContent = today;
+  }
+}
