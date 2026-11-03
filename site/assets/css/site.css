@@ -405,6 +405,7 @@ footer.site a { color: var(--ink-soft); }
 /* ============ RESPONSIVE ============ */
 @media (max-width: 1080px) {
   .nav ul a { padding: 6px 7px; }
+  .cmd-btn .lbl { display: none; } /* room for the full menu */
   .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .stats li:nth-child(4) { padding-left: 0; border-left: 0; }
   .stats li:nth-child(n+4) { border-top: 1px solid var(--line); }
