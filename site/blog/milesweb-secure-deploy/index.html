@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deploy to MilesWeb securely — Ismail Shaikh</title>
+<meta name="description" content="A step-by-step, configurable guide to deploying GitHub repositories (public and private) to MilesWeb cPanel hosting with SSH deploy keys, keeping source code out of public_html.">
+<link rel="canonical" href="https://shaikhismail.com/blog/milesweb-secure-deploy/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deploy to MilesWeb (cPanel) without exposing your source code">
+<meta property="og:description" content="Deploy keys, ~/.ssh/config aliases, multiple repos, and tests that prove your .git folder is not public.">
+<meta property="og:url" content="https://shaikhismail.com/blog/milesweb-secure-deploy/">
+<meta name="theme-color" content="#155E3B">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23155E3B'/><text x='50' y='68' font-size='58' text-anchor='middle' fill='%23F5821F' font-family='monospace' font-weight='bold'>i</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="../../assets/css/site.css?v=2.5.0">
+<style>
+  /* ---------- Article layout (uses the site's colour tokens) ---------- */
+  .post { padding-top: 48px; }
+  .post-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; align-items: start; }
+  .toc { position: sticky; top: 88px; font-size: 12px; }
+  .toc b { display: block; color: var(--green); margin-bottom: 8px; }
+  .toc ol { margin: 0; padding-left: 18px; color: var(--ink-soft); }
+  .toc li { margin: 3px 0; }
+  .toc a { text-decoration: none; color: var(--ink-soft); }
+  .toc a:hover { color: var(--green); }
+  .article { max-width: 780px; min-width: 0; }
+  .article h2 { font-size: clamp(21px, 2.6vw, 27px); letter-spacing: -.02em; line-height: 1.25; margin: 64px 0 12px; color: var(--ink); }
+  .article h2 .n { color: var(--orange); margin-right: 8px; }
+  .article h3 { font-size: 16px; margin: 30px 0 8px; color: var(--green); }
+  .article p, .article li { color: var(--ink); }
+  .article p { margin: 0 0 14px; }
+  .article ul, .article ol { padding-left: 22px; margin: 0 0 14px; }
+  .article li { margin: 4px 0; }
+  .article a { color: var(--green); text-underline-offset: 3px; }
+  .article code { font-size: .92em; background: var(--bg-alt); border: 1px solid var(--line); border-radius: 5px; padding: 0 5px; overflow-wrap: anywhere; }
+  .meta-line { font-size: 13px; color: var(--ink-soft); margin-top: 14px; }
+  .meta-line span + span::before { content: " · "; }
+
+  .note { border-left: 3px solid var(--green); background: var(--surface); padding: 12px 16px; border-radius: 0 10px 10px 0; margin: 18px 0; font-size: 14px; }
+  .note.warn { border-left-color: var(--orange); }
+  .note b:first-child { color: var(--green); }
+  .note.warn b:first-child { color: var(--orange); }
+  .note p:last-child { margin-bottom: 0; }
+
+  /* ---------- Code blocks ---------- */
+  .code { background: var(--term-bg); color: var(--term-ink); border: 1px solid var(--term-line); border-radius: 12px; margin: 14px 0 18px; overflow: hidden; }
+  .code-bar { display: flex; align-items: center; gap: 10px; padding: 7px 10px 7px 14px; border-bottom: 1px solid var(--term-line); font-size: 11px; color: var(--term-dim); }
+  .code-bar .where { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .code-bar .where b { color: var(--term-warn); font-weight: 500; }
+  .code-bar button { font: inherit; font-size: 11px; color: var(--term-ink); background: transparent; border: 1px solid var(--term-line); border-radius: 6px; padding: 3px 10px; cursor: pointer; flex-shrink: 0; }
+  .code-bar button:hover { border-color: var(--term-dim); }
+  .code-bar button.done { color: var(--term-ok); border-color: var(--term-ok); }
+  .code pre { margin: 0; padding: 12px 14px 14px; overflow-x: auto; font: inherit; font-size: 13px; line-height: 1.6; white-space: pre; tab-size: 4; }
+  .code .c { color: var(--term-dim); }
+  .repo-tag { display: inline-block; font-size: 12px; font-weight: 700; color: var(--orange); margin: 18px 0 -6px; }
+
+  /* ---------- Config panel ---------- */
+  .config { border: 1.5px solid var(--green); border-radius: 14px; background: var(--surface); padding: 20px; margin: 18px 0 8px; }
+  .config h3 { margin: 0 0 4px; }
+  .config .hint { font-size: 13px; color: var(--ink-soft); margin: 0 0 16px; }
+  .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; }
+  .field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .field label { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .field small { font-size: 11px; color: var(--ink-soft); line-height: 1.45; }
+  .field input[type=text] { font: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); min-width: 0; width: 100%; }
+  .field input[type=text]:focus { outline: 2px solid var(--green); outline-offset: 0; border-color: var(--green); }
+  .field input.bad, .field input.bad:focus { border-color: var(--orange); outline-color: var(--orange); }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; grid-column: 1 / -1; }
+  .check input { margin-top: 5px; accent-color: var(--green); }
+  .repos { margin-top: 20px; display: grid; gap: 14px; }
+  .repo-card { border: 1px solid var(--line); border-radius: 12px; padding: 14px; background: var(--bg); }
+  .repo-card header { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .repo-card header b { color: var(--green); font-size: 14px; overflow-wrap: anywhere; }
+  .repo-card .derived { font-size: 11px; color: var(--ink-soft); margin-top: 10px; overflow-wrap: anywhere; }
+  .repo-card .derived code { font-size: 11px; }
+  .small-btn { font: inherit; font-size: 12px; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+  .small-btn:hover { border-color: var(--green); color: var(--green); }
+  .config-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; align-items: center; }
+  .config-actions span { font-size: 12px; color: var(--ink-soft); }
+  .problems { margin-top: 12px; font-size: 13px; color: var(--orange); }
+  .problems:empty { display: none; }
+
+  /* ---------- Diagram / tables ---------- */
+  .tree { font-size: 13px; line-height: 1.55; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; overflow-x: auto; white-space: pre; margin: 14px 0 18px; }
+  .tree .pub { color: var(--orange); font-weight: 700; }
+  .tree .priv { color: var(--green); font-weight: 700; }
+  .tree .c { color: var(--ink-soft); }
+  .tbl-wrap { overflow-x: auto; margin: 14px 0 18px; }
+  table.t { border-collapse: collapse; width: 100%; font-size: 13px; }
+  table.t th, table.t td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.t th { color: var(--green); font-size: 12px; }
+  table.t td code { white-space: nowrap; }
+  .links-list li { margin: 6px 0; }
+  .links-list small { color: var(--ink-soft); }
+
+  @media (max-width: 960px) {
+    .post-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .toc { position: static; border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--surface); }
+  }
+  @media (max-width: 600px) {
+    .fields { grid-template-columns: minmax(0, 1fr); }
+    .config { padding: 16px 14px; }
+    .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+    .code pre { font-size: 12px; }
+  }
+</style>
+</head>
+<body data-base="../../">
+
+<header class="site">
+  <nav class="wrap nav" aria-label="Main">
+    <a href="../../" class="logo"><span>shaikhismail</span><i>_</i></a>
+    <ul id="menu">
+      <li><a href="../../#work">Work</a></li>
+      <li><a href="../../#experience">Experience</a></li>
+      <li><a href="../../#resume">Resume</a></li>
+      <li><a href="../../#contact">Contact</a></li>
+      <li><a href="../../tools/">Tools</a></li>
+      <li><a href="../" aria-current="page">Blog</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="icon-btn cmd-btn" id="cmdBtn" aria-label="Open command menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-5-6-5M12 19h8"/></svg>
+        <span class="kbd lbl">Ctrl K</span>
+      </button>
+      <button class="icon-btn" id="themeBtn" aria-label="Switch light or dark theme">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="prompt" aria-hidden="true"><span class="u">guest</span>@<span class="d">shaikhismail</span>:~$ cat blog/milesweb-secure-deploy.md<span class="caret"></span></div>
+      <h1>Deploy to MilesWeb without exposing your source code</h1>
+      <p>A step-by-step guide to cloning public and private GitHub repositories onto MilesWeb cPanel hosting with SSH deploy keys, publishing only the built files to <code>public_html</code>, and testing that nobody can download your <code>.git</code> folder.</p>
+      <div class="meta-line"><span>November 2026</span><span>Guide</span><span>~15 min setup</span></div>
+    </div>
+  </section>
+
+  <section class="post">
+    <div class="wrap post-grid">
+      <nav class="toc" aria-label="On this page">
+        <b>On this page</b>
+        <ol>
+          <li><a href="#config">Your settings</a></li>
+          <li><a href="#cpanel">cPanel and the MilesWeb layout</a></li>
+          <li><a href="#where">Where the code lives</a></li>
+          <li><a href="#terminal">Open a terminal</a></li>
+          <li><a href="#prepare">Prepare ~/.ssh</a></li>
+          <li><a href="#keys">One deploy key per repo</a></li>
+          <li><a href="#sshconfig">~/.ssh/config aliases</a></li>
+          <li><a href="#clone">Clone public and private repos</a></li>
+          <li><a href="#deploy">Publish only built files</a></li>
+          <li><a href="#multi">Multiple repositories</a></li>
+          <li><a href="#harden">Harden public_html</a></li>
+          <li><a href="#tests">Tests</a></li>
+          <li><a href="#trouble">Troubleshooting</a></li>
+          <li><a href="#updates">Day-to-day updates</a></li>
+          <li><a href="#links">Links</a></li>
+        </ol>
+      </nav>
+
+      <article class="article">
+        <p>Most cPanel tutorials tell you to clone your repository straight into <code>public_html</code>. That works, and it also publishes your <code>.git</code> folder, which holds every file and every past commit, including anything you once committed by mistake. Tools that scan the internet for <code>/.git/config</code> run all day.</p>
+        <p>This guide keeps the repository in your private home directory and copies only the files that belong on the web into <code>public_html</code>. It is written for MilesWeb shared hosting (cPanel), but every step works on any cPanel host.</p>
+
+        <!-- ================= 1. CONFIG ================= -->
+        <h2 id="config"><span class="n">01</span>Your settings</h2>
+        <p>Fill in your values once. Every command on this page updates as you type, so you can copy any block and paste it as it is. Nothing you type leaves your browser; it is saved only in this browser so the page remembers it next time.</p>
+
+        <div class="config" id="configPanel">
+          <h3>Hosting account</h3>
+          <p class="hint">Find these in cPanel: the username and home directory are in the right-hand <em>General Information</em> panel; the SSH port is on MilesWeb's SSH guide (7822 at the time of writing).</p>
+          <div class="fields" id="hostFields"></div>
+          <div class="repos" id="repoCards"></div>
+          <div class="config-actions">
+            <button class="small-btn" type="button" id="addRepo">+ Add repository</button>
+            <button class="small-btn" type="button" id="resetCfg">Reset to defaults</button>
+            <span>Changes apply to every command below.</span>
+          </div>
+          <div class="problems" id="problems" role="status" aria-live="polite"></div>
+        </div>
+        <noscript><div class="note warn"><b>JavaScript is off.</b> The commands below are filled in from the settings panel, which needs JavaScript. Turn it on to see them.</div></noscript>
+
+        <p>The settings above also produce this summary, which is handy to keep in your notes:</p>
+        <div class="code" data-t="summary"></div>
+
+        <!-- ================= 2. CPANEL ================= -->
+        <h2 id="cpanel"><span class="n">02</span>What cPanel is, and what MilesWeb gives you</h2>
+        <p><strong>cPanel</strong> is the web control panel MilesWeb puts on top of a Linux hosting account. You log in at <code>https://<span data-v="domain"></span>/cpanel</code> (or through the MilesWeb client area) and get tools for files, domains, email, databases, and, the ones we need here:</p>
+        <ul>
+          <li><strong>File Manager</strong>: a browser view of your home directory.</li>
+          <li><strong>Terminal</strong> (Advanced → Terminal): a shell in your browser. It only appears when <em>Shell Access</em> is enabled on your plan. If you do not see it, ask MilesWeb support to enable SSH.</li>
+          <li><strong>SSH Access</strong> (Security → SSH Access): manage keys for logging in from your own computer.</li>
+          <li><strong>Git Version Control</strong> (Files → Git Version Control): clone a repository, pull updates, and run a deployment with one click.</li>
+          <li><strong>Domains</strong>: shows the <em>document root</em> (the folder a domain serves) for your main domain, subdomains and addon domains.</li>
+        </ul>
+        <p>Your account is a Linux user with a home directory. Only one folder in it is served to the internet:</p>
+        <div class="tree" id="treeBasic"></div>
+        <p>Anything inside <code>public_html</code> (or inside a subdomain's document root) can be requested by anyone. Anything outside it cannot, as long as no web folder links to it.</p>
+
+        <!-- ================= 3. WHERE ================= -->
+        <h2 id="where"><span class="n">03</span>Where the code lives</h2>
+        <p>The rule for the whole guide:</p>
+        <div class="note"><b>Source outside, output inside.</b>
+          <p>Clone every repository into <code><span data-v="reposAbs"></span>/&lt;repo&gt;</code>, which is outside the web root. Copy only the folder that holds your built or static site (for this site, <code>site/</code>) into the web root. Never clone into <code>public_html</code>, and never copy the repository root.</p>
+        </div>
+        <p>This is exactly how this site is already set up. Its <a href="https://github.com/mdism/mdism/blob/main/DEPLOY.md">DEPLOY.md</a> clones the repository to <code>repositories/mdism</code>, and its <code>.cpanel.yml</code> copies only <code>site/</code> into <code>public_html</code>. This guide adds the parts DEPLOY.md does not cover: SSH deploy keys for private repositories, more than one repository, and tests.</p>
+        <div class="note"><b>The build step happens before the copy.</b>
+          <p>If a project needs a build (React, Vite, Svelte, Hugo and so on), build it on your computer or in GitHub Actions and commit the output folder (for example <code>dist/</code>) on a deploy branch, or build it on the server in the <code>.cpanel.yml</code> tasks if the server has the tools. Either way, the source folder you set for that repository is the one that gets copied.</p>
+        </div>
+
+        <!-- ================= 4. TERMINAL ================= -->
+        <h2 id="terminal"><span class="n">04</span>Open a terminal on the server</h2>
+        <p>You need a shell on the hosting account for the next steps. Pick one:</p>
+        <h3>Option A: cPanel Terminal (no setup)</h3>
+        <p>cPanel → Advanced → <strong>Terminal</strong>. You start in <code><span data-v="homeAbs"></span></code>. Every block below marked <b style="color:var(--orange)">cPanel Terminal</b> runs here.</p>
+        <h3>Option B: SSH from your own computer</h3>
+        <p>Make a login key on your computer. The same commands work in macOS/Linux Terminal and in Windows PowerShell (OpenSSH is built into Windows 10 and 11). Set a passphrase when asked: this key logs in to your hosting, so protect it. If it says the folder does not exist, run <code>mkdir $HOME/.ssh</code> first.</p>
+        <div class="code" data-t="laptopKey"></div>
+        <p>In cPanel → Security → <strong>SSH Access</strong> → Manage SSH Keys → <strong>Import Key</strong>, give it a name, paste the public key you just printed, and import. Then click <strong>Manage</strong> next to the key and <strong>Authorize</strong> it.</p>
+        <p>Add a short alias on your computer so you can type <code>ssh milesweb</code>. Open the file with <code>notepad $HOME\.ssh\config</code> on Windows or <code>nano ~/.ssh/config</code> on macOS/Linux and paste:</p>
+        <div class="code" data-t="laptopConfig"></div>
+        <div class="code" data-t="laptopLogin"></div>
+        <div class="note"><b>Two different keys.</b>
+          <p>The key in this step lets <em>you</em> log in to the hosting account. The deploy keys in step 6 let the <em>hosting account</em> read your GitHub repositories. Keep them separate: never copy your personal GitHub key onto shared hosting.</p>
+        </div>
+
+        <!-- ================= 5. PREPARE ================= -->
+        <h2 id="prepare"><span class="n">05</span>Prepare ~/.ssh and trust GitHub's host key</h2>
+        <p>Create the folder and files with the permissions SSH insists on (it ignores keys and config files that other users can read):</p>
+        <div class="code" data-t="prepare"></div>
+        <p>Next, tell the server what GitHub's real host key is. cPanel's Git Version Control checks the host key and refuses to clone from a host it does not know, so do this before cloning. First print the fingerprint:</p>
+        <div class="code" data-t="fingerprint"></div>
+        <p>Compare the output with the <strong>ED25519</strong> line on <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints">GitHub's SSH key fingerprints page</a>. At the time of writing it is <code>SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU</code>. Only if it matches, save it:</p>
+        <div class="code" data-t="knownHosts"></div>
+
+        <!-- ================= 6. KEYS ================= -->
+        <h2 id="keys"><span class="n">06</span>Create one deploy key per repository</h2>
+        <p>A <strong>deploy key</strong> is an SSH key attached to a single GitHub repository instead of your account. If the hosting account is ever compromised, the attacker gets read access to that one repository, not your whole GitHub account. GitHub does not let you attach the same deploy key to two repositories, which is why each repository gets its own key.</p>
+        <p>Run this once per repository in the cPanel Terminal. The key has no passphrase because cPanel has to use it without you typing anything; it is read-only, which is what makes that acceptable.</p>
+        <div data-each="key"></div>
+        <p>Then add each printed public key to GitHub. The link opens the right page for each repository:</p>
+        <div id="ghLinks"></div>
+        <ol>
+          <li><strong>Title</strong>: something you will recognise later, such as <code>MilesWeb <span data-v="user"></span></code>.</li>
+          <li><strong>Key</strong>: paste the whole line that starts with <code>ssh-ed25519</code>.</li>
+          <li>Leave <strong>Allow write access</strong> unticked. The server only ever needs to pull.</li>
+        </ol>
+        <div class="note"><b>Public repositories</b>
+          <p>A public repository can be cloned over HTTPS with no key at all, which is what DEPLOY.md does today. Setting up a deploy key for it anyway costs two minutes and means nothing breaks if you later make the repository private. One exception: <code>mdism/mdism</code> must stay public, because GitHub only shows a profile README from a public repository.</p>
+        </div>
+
+        <!-- ================= 7. SSH CONFIG ================= -->
+        <h2 id="sshconfig"><span class="n">07</span>Give each repository a Host alias in ~/.ssh/config</h2>
+        <p>Every GitHub repository lives at the same address, <code>github.com</code>. If you have two keys, SSH needs to know which key to offer for which repository. A <strong>Host alias</strong> solves that: you invent a name (for example <code>github-mdism</code>), point it at <code>github.com</code>, and pin it to one key. Then you clone from the alias instead of from <code>github.com</code>.</p>
+        <p>Run this for each repository. It appends the alias only if it is not already in the file, so running it twice is safe:</p>
+        <div data-each="alias"></div>
+        <p>When you are done, the whole file looks like this:</p>
+        <div class="code" data-t="fullConfig"></div>
+        <p>What each line does:</p>
+        <div class="tbl-wrap"><table class="t">
+          <tr><th>Line</th><th>Meaning</th></tr>
+          <tr><td><code>Host</code></td><td>The alias you type in the clone URL. It can be any name without spaces.</td></tr>
+          <tr><td><code>HostName</code></td><td>The real server to connect to: <code>github.com</code> (or <code>ssh.github.com</code> on port 443).</td></tr>
+          <tr><td><code>User git</code></td><td>GitHub always uses the user <code>git</code> for SSH.</td></tr>
+          <tr><td><code>IdentityFile</code></td><td>The private key for this repository only.</td></tr>
+          <tr><td><code>IdentitiesOnly yes</code></td><td>Offer only that key. Without it SSH may try another key first, GitHub accepts it, and you get "Repository not found" for the wrong repository.</td></tr>
+        </table></div>
+        <p>Now test each alias. GitHub replies with the repository name and closes the connection (the exit code is 1 even on success, which is normal):</p>
+        <div data-each="test"></div>
+
+        <!-- ================= 8. CLONE ================= -->
+        <h2 id="clone"><span class="n">08</span>Clone public and private repositories</h2>
+        <h3>Recommended: cPanel Git Version Control</h3>
+        <p>Cloning through cPanel means you get the <strong>Pull or Deploy</strong> button later. cPanel → Files → <strong>Git Version Control</strong> → <strong>Create</strong>, turn on <em>Clone a Repository</em>, and enter:</p>
+        <div id="uiTable"></div>
+        <p>If cPanel rejects the short form of the clone URL, use the <code>ssh://</code> form from the last column; both point at the same alias.</p>
+        <h3>Alternative: clone from the terminal</h3>
+        <div data-each="clone"></div>
+        <p>A repository cloned in the terminal is not on the Git Version Control list yet. To add it, use <strong>Create</strong> with <em>Clone a Repository</em> turned off and the same repository path; cPanel picks up the existing clone.</p>
+        <h3>Public repository over HTTPS (no key)</h3>
+        <p>This is how DEPLOY.md does it today and it is still fine for a public repository:</p>
+        <div data-each="cloneHttps"></div>
+
+        <!-- ================= 9. DEPLOY ================= -->
+        <h2 id="deploy"><span class="n">09</span>Publish only the built files with .cpanel.yml</h2>
+        <p>cPanel's <strong>Deploy HEAD Commit</strong> button runs the tasks in a file called <code>.cpanel.yml</code> at the root of the repository. Put this file in the repository on your computer, commit it and push it. Each task is one shell command; the copy line is what keeps your source private, because it copies the contents of the source folder and nothing else.</p>
+        <div data-each="yml"></div>
+        <div class="note"><b>Already in place for this site.</b>
+          <p>The repository's existing <code>.cpanel.yml</code> already copies <code>site/.</code> to <code>public_html</code>. Its path starts with <code>//home/</code>; the double slash works on Linux, and the version above simply writes it with one slash and adds a <code>mkdir</code> so a new folder target also works.</p>
+        </div>
+        <ul>
+          <li>Use spaces, not tabs, in YAML.</li>
+          <li>Deploy needs a clean working tree on the server: if someone edited files inside the clone, the Deploy button stays disabled.</li>
+          <li><code>cp</code> adds and overwrites, it never deletes. When you remove or rename a page, delete the old copy from <code>public_html</code> in File Manager.</li>
+          <li>Never set the source folder to <code>.</code> (the repository root): that copies <code>.git</code>, README files and scripts into the web root.</li>
+        </ul>
+
+        <!-- ================= 10. MULTI ================= -->
+        <h2 id="multi"><span class="n">10</span>When you have more than one repository</h2>
+        <p>Everything above already loops over every repository in your settings. The rules that keep several repositories from clashing:</p>
+        <ol>
+          <li><strong>One key per repository</strong>: <code>~/.ssh/deploy_&lt;repo&gt;</code>. GitHub rejects a deploy key that is already used on another repository ("Key is already in use").</li>
+          <li><strong>One Host alias per repository</strong>: <code>github-&lt;repo&gt;</code>, each pinned to its own key with <code>IdentitiesOnly yes</code>.</li>
+          <li><strong>One clone folder per repository</strong>: <code><span data-v="reposAbs"></span>/&lt;repo&gt;</code>, all outside the web root.</li>
+          <li><strong>One publish target per repository</strong>: the main site goes to <code>public_html</code>, others to a sub-folder (<code>public_html/app</code>) or to a subdomain's own document root. Two repositories copying into the same folder will overwrite each other's files.</li>
+          <li><strong>A clone URL that uses the alias</strong>: <code>git@github-&lt;repo&gt;:owner/repo.git</code>, never plain <code>git@github.com:…</code>.</li>
+        </ol>
+        <p>Your current settings produce this layout:</p>
+        <div class="tree" id="treeFull"></div>
+        <div id="multiTable"></div>
+        <p>To add a repository later: add it in the settings panel at the top, then run its blocks in steps 6, 7, 8 and 9, and its lines in the tests below. Nothing about the existing repositories changes.</p>
+        <div class="note"><b>A subdomain for a second project</b>
+          <p>If a project should live at <code>app.<span data-v="domain"></span></code>, create the subdomain in cPanel → Domains with its document root inside the web root (for example <code>public_html/app</code>) and set that repository's publish target to <code>app</code>. If cPanel puts the document root outside <code>public_html</code>, change the <code>DEPLOYPATH</code> line in that repository's <code>.cpanel.yml</code> to the folder cPanel shows.</p>
+        </div>
+
+        <!-- ================= 11. HARDEN ================= -->
+        <h2 id="harden"><span class="n">11</span>Harden public_html (optional, recommended)</h2>
+        <p>Even with the source outside the web root, it is worth telling the web server to refuse hidden files and to stop listing folders that have no index page. This appends a small block to <code>public_html/.htaccess</code> once; cPanel's own lines in that file stay as they are.</p>
+        <div class="code" data-t="htaccess"></div>
+        <p><code>RedirectMatch 404</code> makes every path that contains a dot-folder or dot-file (<code>/.git/</code>, <code>/.env</code>, <code>/.cpanel.yml</code>) answer "404 Not Found", while <code>/.well-known/</code> keeps working for SSL certificate renewal. If the site shows a 500 error afterwards, the host does not allow <code>Options</code> in .htaccess: delete that one line.</p>
+        <div class="note warn"><b>Watch out</b>
+          <p>If you ever add a <code>.htaccess</code> file inside your source folder, the deploy copy will overwrite the one in <code>public_html</code>. Put the block above into that file too.</p>
+        </div>
+        <p>Two more habits: never put secrets (API keys, database passwords, <code>.env</code> files) in the folder you publish, and keep any server-side config files in your home directory, outside the web root.</p>
+
+        <!-- ================= 12. TESTS ================= -->
+        <h2 id="tests"><span class="n">12</span>Tests: prove it worked and that the source is private</h2>
+        <h3>On the server (cPanel Terminal)</h3>
+        <p><strong>1. Each alias authenticates with its own key.</strong> Expect <code>Hi owner/repo! You've successfully authenticated</code> for every line, with the right repository name:</p>
+        <div class="code" data-t="tAuth"></div>
+        <p><strong>2. Every clone is outside the web root and uses its alias.</strong> Expect only <code>OK</code> lines:</p>
+        <div class="code" data-t="tOutside"></div>
+        <p><strong>3. No repository files ended up in the web root.</strong> Expect no output at all:</p>
+        <div class="code" data-t="tFind"></div>
+        <p><strong>4. Key and config permissions are tight.</strong> Expect <code>700</code> for the folder and <code>600</code> for the config, known_hosts and every private key (<code>644</code> is fine for <code>.pub</code> files):</p>
+        <div class="code" data-t="tPerms"></div>
+        <p><strong>5. The published files match the source folder.</strong> Run this after a deploy. No output means every file in the source folder is live and identical:</p>
+        <div class="code" data-t="tDiff"></div>
+
+        <h3>From any other computer (the outside view)</h3>
+        <p><strong>6. Private paths are not reachable over the web.</strong> The first line (the home page) should be <code>200</code>. Every other line must be <code>403</code> or <code>404</code>. A <code>200</code> on any <code>.git</code> line means the repository is exposed: stop and fix it before anything else.</p>
+        <div class="code" data-t="tCurlBash"></div>
+        <div class="code" data-t="tCurlPs"></div>
+        <p><strong>7. The .git folder does not leak.</strong> This must <em>not</em> print <code>ref: refs/heads/…</code>:</p>
+        <div class="code" data-t="tHead"></div>
+        <p>If you prefer a browser: open <code>https://<span data-v="domain"></span>/.git/config</code> and <code>https://<span data-v="domain"></span>/.cpanel.yml</code>. You should see a "Not Found" or "Forbidden" page, never file contents.</p>
+
+        <!-- ================= 13. TROUBLE ================= -->
+        <h2 id="trouble"><span class="n">13</span>Troubleshooting</h2>
+        <div class="tbl-wrap"><table class="t">
+          <tr><th>Message</th><th>Cause and fix</th></tr>
+          <tr><td><code>Permission denied (publickey)</code></td><td>The public key is not on that repository's Deploy keys page, the clone URL uses <code>github.com</code> instead of the alias, or the key file is readable by others. Re-run test 1 and the permissions test.</td></tr>
+          <tr><td><code>Host key verification failed</code></td><td>GitHub's key is not in <code>~/.ssh/known_hosts</code>. Redo step 5.</td></tr>
+          <tr><td><code>Key is already in use</code> (on GitHub)</td><td>That key is attached to another repository or to your account. Make a new key for this repository (step 6).</td></tr>
+          <tr><td><code>ERROR: Repository not found</code></td><td>Usually the right server but the wrong key: the alias is missing <code>IdentitiesOnly yes</code>, or the owner/repo name is misspelled.</td></tr>
+          <tr><td><code>Connection timed out</code> on port 22</td><td>The host blocks outgoing port 22. Tick <em>Reach GitHub over port 443</em> in the settings, then redo steps 5 and 7.</td></tr>
+          <tr><td>Deploy HEAD Commit is greyed out</td><td><code>.cpanel.yml</code> is missing from the repository root, or the clone on the server has local changes (<code>git status</code> in the clone folder shows them).</td></tr>
+          <tr><td>Old pages still online</td><td>The copy never deletes. Remove them from <code>public_html</code> in File Manager.</td></tr>
+        </table></div>
+
+        <!-- ================= 14. UPDATES ================= -->
+        <h2 id="updates"><span class="n">14</span>Day-to-day updates</h2>
+        <p>Push to GitHub from your computer as usual, then in cPanel → Git Version Control → <strong>Manage</strong> → <strong>Pull or Deploy</strong>: click <em>Update from Remote</em>, then <em>Deploy HEAD Commit</em>. That is the same flow as DEPLOY.md. From the terminal, the same two actions are:</p>
+        <div data-each="update"></div>
+        <p>For this site, run <code>python scripts/bump_version.py</code> before you push, as DEPLOY.md describes, so visitors' browsers load the new CSS and JavaScript.</p>
+
+        <!-- ================= 15. LINKS ================= -->
+        <h2 id="links"><span class="n">15</span>Links</h2>
+        <h3>MilesWeb</h3>
+        <ul class="links-list">
+          <li><a href="https://www.milesweb.in/hosting-faqs/how-to-configure-ssh-using-cpanel/">How to configure SSH using cPanel</a> <small>(SSH keys, port 7822)</small></li>
+          <li><a href="https://www.milesweb.in/hosting-faqs/learn-to-set-up-access-to-private-repositories-using-git/">Set up access to private repositories using Git</a></li>
+          <li><a href="https://www.milesweb.in/hosting-faqs/how-to-automatically-deploy-from-github-git-to-cpanel/">Deploy from GitHub to cPanel</a> <small>(.cpanel.yml)</small></li>
+        </ul>
+        <h3>cPanel</h3>
+        <ul class="links-list">
+          <li><a href="https://docs.cpanel.net/cpanel/files/git-version-control/">Git Version Control</a></li>
+          <li><a href="https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-set-up-access-to-private-repositories/">Guide to Git: set up access to private repositories</a> <small>(Host aliases for several repos)</small></li>
+          <li><a href="https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-deployment/">Guide to Git: deployment</a> <small>(.cpanel.yml)</small></li>
+          <li><a href="https://docs.cpanel.net/cpanel/security/ssh-access/">SSH Access</a> and <a href="https://docs.cpanel.net/cpanel/advanced/terminal-in-cpanel/">Terminal</a></li>
+        </ul>
+        <h3>GitHub</h3>
+        <ul class="links-list">
+          <li><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys">Managing deploy keys</a></li>
+          <li><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Generating a new SSH key</a></li>
+          <li><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection">Testing your SSH connection</a></li>
+          <li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints">GitHub's SSH key fingerprints</a></li>
+          <li><a href="https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port">Using SSH over the HTTPS port</a></li>
+        </ul>
+
+        <div class="follow">
+          <a class="btn btn-quiet" href="../">All posts</a>
+          <a class="btn btn-quiet" href="https://www.linkedin.com/in/iamismail" target="_blank" rel="noopener">Follow on LinkedIn</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> Mohammed Ismail Shaikh · <a id="ver" class="ver" href="https://github.com/mdism/mdism/blob/main/CHANGELOG.md" target="_blank" rel="noopener" title="What changed in this version">v2.5.0</a></span>
+    <span><a href="../../">Back to shaikhismail.com</a></span>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js?v=2.5.0"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ---------------- Defaults (from this site's repo) ---------------- */
+  var DEFAULTS = {
+    user: 'qyotupjl',
+    domain: 'shaikhismail.com',
+    sshHost: 'shaikhismail.com',
+    sshPort: '7822',
+    home: '',
+    webroot: 'public_html',
+    reposDir: 'repositories',
+    loginKey: 'milesweb_login',
+    gh443: false,
+    repos: [
+      { owner: 'mdism', name: 'mdism', branch: 'main', src: 'site', target: '' },
+      { owner: 'mdism', name: 'my-private-app', branch: 'main', src: 'dist', target: 'app' }
+    ]
+  };
+  var STORE = 'milesweb-deploy-guide-v1';
+
+  var HOST_FIELDS = [
+    ['user', 'cPanel username', 'Shown in cPanel → General Information.'],
+    ['domain', 'Domain', 'The site you are publishing, without https://.'],
+    ['sshHost', 'SSH host', 'Usually your domain, or the server name MilesWeb gave you.'],
+    ['sshPort', 'SSH port', 'MilesWeb uses 7822.'],
+    ['home', 'Home directory', 'Leave empty for /home/<username>.'],
+    ['webroot', 'Web root (inside home)', 'Usually public_html.'],
+    ['reposDir', 'Folder for clones (inside home)', 'Must not be inside the web root.'],
+    ['loginKey', 'Your login key file name', 'For SSH from your computer (step 4).']
+  ];
+  var REPO_FIELDS = [
+    ['owner', 'GitHub owner', 'User or organisation.'],
+    ['name', 'Repository name', ''],
+    ['branch', 'Branch to deploy', ''],
+    ['src', 'Folder to publish', 'Inside the repo, e.g. site or dist. Never "."'],
+    ['target', 'Publish target (inside web root)', 'Empty = the web root itself.']
+  ];
+
+  var cfg = load();
+
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function load() {
+    try {
+      var s = localStorage.getItem(STORE);
+      if (s) {
+        var c = JSON.parse(s);
+        if (c && Array.isArray(c.repos) && c.repos.length) return Object.assign(clone(DEFAULTS), c);
+      }
+    } catch (e) {}
+    return clone(DEFAULTS);
+  }
+  function save() { try { localStorage.setItem(STORE, JSON.stringify(cfg)); } catch (e) {} }
+
+  /* ---------------- Derived values ---------------- */
+  function trimSlashes(s) { return String(s || '').trim().replace(/^\/+|\/+$/g, ''); }
+  function val(s) { return String(s == null ? '' : s).trim(); }
+  function D() {
+    var user = val(cfg.user);
+    var home = val(cfg.home) ? val(cfg.home).replace(/\/+$/, '') : '/home/' + user;
+    var web = home + '/' + trimSlashes(cfg.webroot);
+    var repos = home + '/' + trimSlashes(cfg.reposDir);
+    return {
+      user: user, home: home, web: web, repos: repos,
+      domain: val(cfg.domain), sshHost: val(cfg.sshHost), sshPort: val(cfg.sshPort),
+      loginKey: val(cfg.loginKey), gh443: !!cfg.gh443,
+      ghHost: cfg.gh443 ? 'ssh.github.com' : 'github.com'
+    };
+  }
+  function R(r, d) {
+    var name = val(r.name), owner = val(r.owner);
+    var slug = name.toLowerCase().replace(/[^a-z0-9._-]/g, '-');
+    var target = trimSlashes(r.target);
+    return {
+      owner: owner, name: name, full: owner + '/' + name, branch: val(r.branch) || 'main',
+      src: trimSlashes(r.src) || '.', target: target,
+      alias: 'github-' + slug,
+      key: 'deploy_' + slug,
+      keyPath: d.home + '/.ssh/deploy_' + slug,
+      dir: d.repos + '/' + name,
+      dirRel: trimSlashes(cfg.reposDir) + '/' + name,
+      deploy: d.web + (target ? '/' + target : '') + '/',
+      deployNoSlash: d.web + (target ? '/' + target : ''),
+      url: 'git@github-' + slug + ':' + owner + '/' + name + '.git',
+      sshUrl: 'ssh://git@github-' + slug + '/' + owner + '/' + name + '.git',
+      https: 'https://github.com/' + owner + '/' + name + '.git',
+      webPath: target ? '/' + target : ''
+    };
+  }
+  function repos(d) { return cfg.repos.map(function (r) { return R(r, d); }); }
+
+  /* ---------------- Validation ---------------- */
+  var SAFE = /^[A-Za-z0-9._@-]+$/, SAFE_PATH = /^[A-Za-z0-9._@\/-]*$/;
+  function problems() {
+    var d = D(), out = [];
+    if (!SAFE.test(d.user)) out.push('cPanel username: use letters, digits, dot, dash or underscore only.');
+    if (!SAFE.test(d.domain)) out.push('Domain: no spaces, slashes or https://.');
+    if (!SAFE.test(d.sshHost)) out.push('SSH host: no spaces or slashes.');
+    if (!/^\d+$/.test(d.sshPort)) out.push('SSH port: a number.');
+    if (!SAFE_PATH.test(d.home)) out.push('Home directory: no spaces or quotes.');
+    if (!SAFE.test(d.loginKey)) out.push('Login key name: no spaces or slashes.');
+    if (!SAFE_PATH.test(cfg.webroot) || !trimSlashes(cfg.webroot)) out.push('Web root: a folder name such as public_html.');
+    if (!SAFE_PATH.test(cfg.reposDir) || !trimSlashes(cfg.reposDir)) out.push('Folder for clones: a folder name such as repositories.');
+    var rd = trimSlashes(cfg.reposDir), wr = trimSlashes(cfg.webroot);
+    if (rd === wr || rd.indexOf(wr + '/') === 0) out.push('Folder for clones is inside the web root. That would publish your source code; pick a folder outside it.');
+    var seen = {};
+    repos(d).forEach(function (r, i) {
+      var n = 'Repository ' + (i + 1) + ': ';
+      if (!SAFE.test(r.owner) || !SAFE.test(r.name)) out.push(n + 'owner and name: letters, digits, dot, dash or underscore.');
+      if (!SAFE.test(r.branch)) out.push(n + 'branch has unsupported characters.');
+      if (r.src === '.' ) out.push(n + 'folder to publish is the repository root. That copies .git and all source into the web root; use the built folder (site, dist, build).');
+      if (!SAFE_PATH.test(r.src) || /(^|\/)\.\.(\/|$)/.test(r.src)) out.push(n + 'folder to publish has unsupported characters.');
+      if (!SAFE_PATH.test(r.target) || /(^|\/)\.\.(\/|$)/.test(r.target)) out.push(n + 'publish target has unsupported characters.');
+      if (seen[r.alias]) out.push(n + 'has the same name as another repository; aliases and keys would clash.');
+      seen[r.alias] = 1;
+      var tgt = r.target || '(web root)';
+      if (seen['t:' + tgt]) out.push(n + 'publishes to the same target as another repository; they would overwrite each other.');
+      seen['t:' + tgt] = 1;
+    });
+    return out;
+  }
+
+  /* ---------------- Templates ---------------- */
+  // Each returns { where, text }. Lines starting with "# " are rendered dim.
+  var T = {
+    summary: function (d) {
+      var s = '# Hosting\n' +
+        'cPanel user   : ' + d.user + '\n' +
+        'Home          : ' + d.home + '\n' +
+        'Web root      : ' + d.web + '   (public)\n' +
+        'Clones        : ' + d.repos + '   (private)\n' +
+        'SSH           : ' + d.user + '@' + d.sshHost + ' port ' + d.sshPort + '\n' +
+        'GitHub via    : ' + d.ghHost + (d.gh443 ? ' port 443' : ' port 22') + '\n';
+      repos(d).forEach(function (r) {
+        s += '\n# ' + r.full + ' (' + r.branch + ')\n' +
+          'Alias / key   : ' + r.alias + '  /  ~/.ssh/' + r.key + '\n' +
+          'Clone URL     : ' + r.url + '\n' +
+          'Clone folder  : ' + r.dir + '\n' +
+          'Publishes     : ' + r.src + '/  ->  ' + r.deploy + '\n' +
+          'Live at       : https://' + d.domain + (r.webPath || '') + '/\n';
+      });
+      return { where: 'Summary', text: s.replace(/\n$/, '') };
+    },
+    laptopKey: function (d) {
+      return { where: '<b>Your computer</b> · Terminal or PowerShell',
+        text: 'ssh-keygen -t ed25519 -f $HOME/.ssh/' + d.loginKey + ' -C "login-' + d.user + '@' + d.domain + '"\ncat $HOME/.ssh/' + d.loginKey + '.pub' };
+    },
+    laptopConfig: function (d) {
+      return { where: '<b>Your computer</b> · ~/.ssh/config',
+        text: 'Host milesweb\n    HostName ' + d.sshHost + '\n    Port ' + d.sshPort + '\n    User ' + d.user + '\n    IdentityFile ~/.ssh/' + d.loginKey + '\n    IdentitiesOnly yes' };
+    },
+    laptopLogin: function (d) {
+      return { where: '<b>Your computer</b> · log in',
+        text: 'ssh milesweb\n# without the alias, the same thing is:\nssh -p ' + d.sshPort + ' -i $HOME/.ssh/' + d.loginKey + ' ' + d.user + '@' + d.sshHost };
+    },
+    prepare: function () {
+      return { where: '<b>cPanel Terminal</b>',
+        text: 'mkdir -p ~/.ssh && chmod 700 ~/.ssh\ntouch ~/.ssh/config ~/.ssh/known_hosts\nchmod 600 ~/.ssh/config ~/.ssh/known_hosts' };
+    },
+    fingerprint: function (d) {
+      var p = d.gh443 ? ' -p 443 ssh.github.com' : ' github.com';
+      return { where: '<b>cPanel Terminal</b> · print the fingerprint',
+        text: 'ssh-keyscan -t ed25519' + p + ' 2>/dev/null | ssh-keygen -lf -' };
+    },
+    knownHosts: function (d) {
+      var p = d.gh443 ? ' -p 443 ssh.github.com' : ' github.com';
+      return { where: '<b>cPanel Terminal</b> · save it',
+        text: 'ssh-keyscan -t ed25519' + p + ' 2>/dev/null >> ~/.ssh/known_hosts' };
+    },
+    fullConfig: function (d) {
+      var s = '# ' + d.home + '/.ssh/config\n';
+      s += '\n' + repos(d).map(function (r) { return aliasBlock(d, r); }).join('\n\n');
+      return { where: '<b>cPanel</b> · ~/.ssh/config (for reference)', text: s };
+    },
+    htaccess: function (d) {
+      return { where: '<b>cPanel Terminal</b>',
+        text: 'grep -q "BEGIN deploy-hardening" ' + d.web + '/.htaccess 2>/dev/null || cat >> ' + d.web + "/.htaccess <<'EOF'\n\n# BEGIN deploy-hardening\nOptions -Indexes\nRedirectMatch 404 /\\.(?!well-known/)\n# END deploy-hardening\nEOF" };
+    },
+    tAuth: function (d) {
+      return { where: '<b>cPanel Terminal</b>',
+        text: repos(d).map(function (r) { return 'ssh -T git@' + r.alias; }).join('\n') };
+    },
+    tOutside: function (d) {
+      return { where: '<b>cPanel Terminal</b>',
+        text: repos(d).map(function (r) {
+          return '[ -d ' + r.dir + ' ] || echo "MISSING: ' + r.dir + ' (not cloned yet)"\n' +
+            'case "$(realpath ' + r.dir + ')/" in ' + d.web + '/*) echo "FAIL: ' + r.name + ' is inside the web root";; *) echo "OK: ' + r.name + ' is outside the web root";; esac\n' +
+            'git -C ' + r.dir + ' remote get-url origin | grep -q "^git@' + r.alias + ':\\|^ssh://git@' + r.alias + '/\\|^https://" && echo "OK: ' + r.name + ' remote is ' + r.alias + ' or HTTPS" || echo "CHECK: ' + r.name + ' remote does not use its alias"';
+        }).join('\n') };
+    },
+    tFind: function (d) {
+      return { where: '<b>cPanel Terminal</b>',
+        text: 'find ' + d.web + ' \\( -name .git -o -name .cpanel.yml -o -name .env -o -name .gitignore -o -name "*.py" \\) -print' };
+    },
+    tPerms: function (d) {
+      var keys = repos(d).map(function (r) { return '~/.ssh/' + r.key; }).join(' ');
+      return { where: '<b>cPanel Terminal</b>',
+        text: 'stat -c "%a %n" ~/.ssh ~/.ssh/config ~/.ssh/known_hosts ' + keys };
+    },
+    tDiff: function (d) {
+      return { where: '<b>cPanel Terminal</b>',
+        text: repos(d).map(function (r) {
+          return 'diff -rq ' + r.dir + '/' + r.src + ' ' + r.deployNoSlash + ' | grep -v "^Only in ' + r.deployNoSlash + '"';
+        }).join('\n') };
+    },
+    tCurlBash: function (d) {
+      return { where: '<b>Your computer</b> · macOS / Linux / Git Bash',
+        text: 'for p in ' + paths(d).join(' ') + '; do\n  printf "%s  %s\\n" "$(curl -s -o /dev/null -w "%{http_code}" "https://' + d.domain + '$p")" "$p"\ndone' };
+    },
+    tCurlPs: function (d) {
+      return { where: '<b>Your computer</b> · Windows PowerShell',
+        text: "foreach ($p in @(" + paths(d).map(function (p) { return "'" + p + "'"; }).join(', ') + ")) {\n  $c = curl.exe -s -o NUL -w '%{http_code}' \"https://" + d.domain + "$p\"\n  \"$c  $p\"\n}" };
+    },
+    tHead: function (d) {
+      return { where: '<b>Your computer</b>',
+        text: repos(d).map(function (r) { return 'curl -s https://' + d.domain + r.webPath + '/.git/HEAD | head -c 200; echo'; }).join('\n') };
+    }
+  };
+
+  function paths(d) {
+    var list = ['/'];
+    var extra = ['/.git/', '/.git/config', '/.git/HEAD', '/.cpanel.yml', '/.env', '/README.md', '/DEPLOY.md', '/CHANGELOG.md', '/scripts/bump_version.py', '/site/index.html'];
+    extra.forEach(function (p) { list.push(p); });
+    repos(d).forEach(function (r) {
+      if (r.webPath) { list.push(r.webPath + '/.git/config'); list.push(r.webPath + '/.cpanel.yml'); }
+    });
+    list.push('/' + trimSlashes(cfg.reposDir) + '/');
+    list.push('/.ssh/');
+    return list.filter(function (p, i, a) { return a.indexOf(p) === i; });
+  }
+
+  function aliasBlock(d, r) {
+    return 'Host ' + r.alias + '\n' +
+      '    HostName ' + d.ghHost + '\n' +
+      (d.gh443 ? '    Port 443\n' : '') +
+      '    User git\n' +
+      '    IdentityFile ' + r.keyPath + '\n' +
+      '    IdentitiesOnly yes';
+  }
+
+  var EACH = {
+    key: function (d, r) {
+      return { where: '<b>cPanel Terminal</b> · ' + esc(r.full),
+        text: 'ssh-keygen -t ed25519 -N "" -f ~/.ssh/' + r.key + ' -C "milesweb-' + d.user + '-' + r.owner + '-' + r.name + '"\nchmod 600 ~/.ssh/' + r.key + '\ncat ~/.ssh/' + r.key + '.pub' };
+    },
+    alias: function (d, r) {
+      return { where: '<b>cPanel Terminal</b> · ' + esc(r.full),
+        text: 'grep -qx "Host ' + r.alias + '" ~/.ssh/config || cat >> ~/.ssh/config <<\'EOF\'\n\n' + aliasBlock(d, r) + '\nEOF\nchmod 600 ~/.ssh/config' };
+    },
+    test: function (d, r) {
+      return { where: '<b>cPanel Terminal</b> · ' + esc(r.full),
+        text: 'ssh -T git@' + r.alias + '\n# expected: Hi ' + r.full + "! You've successfully authenticated, but GitHub does not provide shell access.\ngit ls-remote " + r.url + ' refs/heads/' + r.branch };
+    },
+    clone: function (d, r) {
+      return { where: '<b>cPanel Terminal</b> · ' + esc(r.full),
+        text: 'mkdir -p ' + d.repos + '\ngit clone --branch ' + r.branch + ' ' + r.url + ' ' + r.dir };
+    },
+    cloneHttps: function (d, r) {
+      return { where: '<b>cPanel Terminal</b> · ' + esc(r.full) + ' · public repos only',
+        text: 'mkdir -p ' + d.repos + '\ngit clone --branch ' + r.branch + ' ' + r.https + ' ' + r.dir };
+    },
+    yml: function (d, r) {
+      return { where: '<b>Repo root</b> · ' + esc(r.full) + ' · .cpanel.yml',
+        text: '---\n# Publishes ONLY ' + r.src + '/ from ' + r.full + '. Source and .git stay in ' + r.dir + '\ndeployment:\n  tasks:\n    - export DEPLOYPATH=' + r.deploy + '\n    - /bin/mkdir -p $DEPLOYPATH\n    - /bin/cp -R ' + r.src + '/. $DEPLOYPATH' };
+    },
+    update: function (d, r) {
+      return { where: '<b>cPanel Terminal</b> · ' + esc(r.full),
+        text: 'uapi VersionControl update repository_root=' + r.dir + ' branch=' + r.branch + '\nuapi VersionControlDeployment create repository_root=' + r.dir };
+    }
+  };
+
+  /* ---------------- Rendering ---------------- */
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+  function codeHtml(block) {
+    var body = block.text.split('\n').map(function (ln) {
+      return /^\s*# /.test(ln) || /^#$/.test(ln.trim()) ? '<span class="c">' + esc(ln) + '</span>' : esc(ln);
+    }).join('\n');
+    return '<div class="code-bar"><span class="where">' + block.where + '</span><button type="button" class="copy">Copy</button></div><pre><code>' + body + '</code></pre>';
+  }
+  function bindCopy(el, text) {
+    var b = el.querySelector('.copy');
+    b.addEventListener('click', function () {
+      var done = function () { b.textContent = 'Copied'; b.classList.add('done'); setTimeout(function () { b.textContent = 'Copy'; b.classList.remove('done'); }, 1400); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+      } else { fallbackCopy(text); done(); }
+    });
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  function fill(el, block) { el.innerHTML = codeHtml(block); bindCopy(el, block.text); }
+
+  function renderAll() {
+    var d = D(), rs = repos(d);
+    document.querySelectorAll('[data-t]').forEach(function (el) { fill(el, T[el.dataset.t](d)); });
+    document.querySelectorAll('[data-each]').forEach(function (holder) {
+      holder.innerHTML = '';
+      rs.forEach(function (r) {
+        var box = document.createElement('div');
+        box.className = 'code';
+        holder.appendChild(box);
+        fill(box, EACH[holder.dataset.each](d, r));
+      });
+    });
+    var vmap = { domain: d.domain, user: d.user, homeAbs: d.home, reposAbs: d.repos };
+    document.querySelectorAll('[data-v]').forEach(function (el) { el.textContent = vmap[el.dataset.v]; });
+
+    // GitHub deploy key links
+    document.getElementById('ghLinks').innerHTML = '<ul>' + rs.map(function (r) {
+      var u = 'https://github.com/' + encodeURIComponent(r.owner) + '/' + encodeURIComponent(r.name) + '/settings/keys/new';
+      return '<li><a href="' + esc(u) + '" target="_blank" rel="noopener">Add deploy key to ' + esc(r.full) + '</a>: paste <code>~/.ssh/' + esc(r.key) + '.pub</code></li>';
+    }).join('') + '</ul>';
+
+    // cPanel UI table
+    document.getElementById('uiTable').innerHTML = '<div class="tbl-wrap"><table class="t"><tr><th>Repository</th><th>Clone URL</th><th>Repository Path</th><th>Repository Name</th><th>ssh:// form</th></tr>' +
+      rs.map(function (r) {
+        return '<tr><td>' + esc(r.full) + '</td><td><code>' + esc(r.url) + '</code></td><td><code>' + esc(r.dirRel) + '</code></td><td><code>' + esc(r.name) + '</code></td><td><code>' + esc(r.sshUrl) + '</code></td></tr>';
+      }).join('') + '</table></div>';
+
+    // Multi-repo table
+    document.getElementById('multiTable').innerHTML = '<div class="tbl-wrap"><table class="t"><tr><th>Repository</th><th>Key</th><th>Alias</th><th>Clone folder</th><th>Publishes to</th></tr>' +
+      rs.map(function (r) {
+        return '<tr><td>' + esc(r.full) + '</td><td><code>~/.ssh/' + esc(r.key) + '</code></td><td><code>' + esc(r.alias) + '</code></td><td><code>' + esc(r.dirRel) + '</code></td><td><code>' + esc(trimSlashes(cfg.webroot) + (r.target ? '/' + r.target : '')) + '/</code></td></tr>';
+      }).join('') + '</table></div>';
+
+    renderTrees(d, rs);
+    var p = problems();
+    document.getElementById('problems').innerHTML = p.length ? '<b>Check these before copying:</b><br>' + p.map(esc).join('<br>') : '';
+  }
+
+  function renderTrees(d, rs) {
+    var wr = esc(trimSlashes(cfg.webroot)), rd = esc(trimSlashes(cfg.reposDir));
+    var basic =
+      esc(d.home) + '/\n' +
+      '├── <span class="priv">.ssh/</span>            <span class="c">keys and config        private</span>\n' +
+      '├── <span class="priv">' + rd + '/</span>    <span class="c">your git clones        private</span>\n' +
+      '├── <span class="pub">' + wr + '/</span>     <span class="c">web root: ' + esc(d.domain) + '   PUBLIC</span>\n' +
+      '├── logs/, mail/, tmp/ …\n' +
+      '└── <span class="c">(subdomain folders, if any)</span>';
+    document.getElementById('treeBasic').innerHTML = basic;
+
+    var s = esc(d.home) + '/\n' +
+      '├── <span class="priv">.ssh/</span>\n' +
+      '│   ├── config          <span class="c">one Host block per repo</span>\n' +
+      '│   ├── known_hosts     <span class="c">GitHub host key</span>\n';
+    rs.forEach(function (r) { s += '│   ├── ' + esc(r.key) + '  <span class="c">+ .pub   ' + esc(r.full) + '</span>\n'; });
+    s += '├── <span class="priv">' + rd + '/</span>          <span class="c">private</span>\n';
+    rs.forEach(function (r, i) {
+      var last = i === rs.length - 1;
+      s += '│   ' + (last ? '└── ' : '├── ') + esc(r.name) + '/  <span class="c">.git, source, ' + esc(r.src) + '/</span>\n';
+    });
+    s += '└── <span class="pub">' + wr + '/</span>           <span class="c">PUBLIC</span>\n';
+    var subs = rs.filter(function (r) { return r.target; });
+    var root = rs.filter(function (r) { return !r.target; });
+    if (root.length) s += '    ├── <span class="c">files from ' + esc(root[0].full) + ':' + esc(root[0].src) + '/</span>\n';
+    subs.forEach(function (r, i) {
+      s += '    ' + (i === subs.length - 1 ? '└── ' : '├── ') + esc(r.target) + '/  <span class="c">files from ' + esc(r.full) + ':' + esc(r.src) + '/</span>\n';
+    });
+    document.getElementById('treeFull').innerHTML = s.replace(/\n$/, '');
+  }
+
+  /* ---------------- Config form ---------------- */
+  function input(id, label, help, value, onInput, check) {
+    var w = document.createElement('div');
+    w.className = 'field';
+    w.innerHTML = '<label for="' + id + '">' + esc(label) + '</label><input type="text" id="' + id + '" spellcheck="false" autocomplete="off" autocapitalize="off">' + (help ? '<small>' + esc(help) + '</small>' : '');
+    var el = w.querySelector('input');
+    el.value = value;
+    el.addEventListener('input', function () { onInput(el.value); if (check) el.classList.toggle('bad', !check(el.value)); save(); renderAll(); });
+    if (check) el.classList.toggle('bad', !check(el.value));
+    return w;
+  }
+  function buildForm() {
+    var hf = document.getElementById('hostFields');
+    hf.innerHTML = '';
+    HOST_FIELDS.forEach(function (f) {
+      var check = f[0] === 'home' ? function (v) { return SAFE_PATH.test(v.trim()); } :
+                  f[0] === 'webroot' || f[0] === 'reposDir' ? function (v) { return SAFE_PATH.test(v.trim()) && !!trimSlashes(v); } :
+                  f[0] === 'sshPort' ? function (v) { return /^\d+$/.test(v.trim()); } :
+                  function (v) { return SAFE.test(v.trim()); };
+      var help = f[2];
+      hf.appendChild(input('f_' + f[0], f[1], help, cfg[f[0]], function (v) { cfg[f[0]] = v; }, check));
+    });
+    var chk = document.createElement('label');
+    chk.className = 'check';
+    chk.innerHTML = '<input type="checkbox" id="f_gh443"><span><b>Reach GitHub over port 443</b> (ssh.github.com). Tick this only if <code>ssh -T</code> times out because the host blocks outgoing port 22.</span>';
+    var cb = chk.querySelector('input');
+    cb.checked = !!cfg.gh443;
+    cb.addEventListener('change', function () { cfg.gh443 = cb.checked; save(); renderAll(); });
+    hf.appendChild(chk);
+
+    var rc = document.getElementById('repoCards');
+    rc.innerHTML = '';
+    cfg.repos.forEach(function (r, i) {
+      var card = document.createElement('div');
+      card.className = 'repo-card';
+      var head = document.createElement('header');
+      head.innerHTML = '<b>Repository ' + (i + 1) + (r.name === 'my-private-app' ? ' <small style="color:var(--orange);font-weight:400">example: rename or remove</small>' : '') + '</b>';
+      if (cfg.repos.length > 1) {
+        var rm = document.createElement('button');
+        rm.type = 'button'; rm.className = 'small-btn'; rm.textContent = 'Remove';
+        rm.addEventListener('click', function () { cfg.repos.splice(i, 1); save(); buildForm(); renderAll(); });
+        head.appendChild(rm);
+      }
+      card.appendChild(head);
+      var grid = document.createElement('div');
+      grid.className = 'fields';
+      REPO_FIELDS.forEach(function (f) {
+        var check = f[0] === 'target' ? function (v) { return SAFE_PATH.test(v.trim()); } :
+                    f[0] === 'src' ? function (v) { return SAFE_PATH.test(v.trim()) && trimSlashes(v) !== '' && trimSlashes(v) !== '.'; } :
+                    function (v) { return SAFE.test(v.trim()); };
+        grid.appendChild(input('r' + i + '_' + f[0], f[1], f[2], r[f[0]], function (v) { r[f[0]] = v; updateDerived(card, r); }, check));
+      });
+      card.appendChild(grid);
+      var der = document.createElement('div');
+      der.className = 'derived';
+      card.appendChild(der);
+      rc.appendChild(card);
+      updateDerived(card, r);
+    });
+  }
+  function updateDerived(card, r) {
+    var x = R(r, D());
+    card.querySelector('.derived').innerHTML = 'Alias <code>' + esc(x.alias) + '</code> · key <code>~/.ssh/' + esc(x.key) + '</code> · clone to <code>' + esc(x.dirRel) + '</code>';
+  }
+
+  document.getElementById('addRepo').addEventListener('click', function () {
+    var n = cfg.repos.length + 1;
+    cfg.repos.push({ owner: cfg.repos[0] ? cfg.repos[0].owner : 'owner', name: 'repo-' + n, branch: 'main', src: 'dist', target: 'repo-' + n });
+    save(); buildForm(); renderAll();
+    var el = document.getElementById('r' + (cfg.repos.length - 1) + '_name');
+    if (el) { el.focus(); el.select(); }
+  });
+  document.getElementById('resetCfg').addEventListener('click', function () {
+    cfg = clone(DEFAULTS); save(); buildForm(); renderAll();
+  });
+
+  buildForm();
+  renderAll();
+})();
+</script>
+</body>
+</html>

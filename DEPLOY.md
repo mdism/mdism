@@ -32,6 +32,10 @@ resume/                        Editable Word versions (not published)
    - Repository path: something outside public_html, e.g. `repositories/mdism`
 3. After it clones, open **Manage → Pull or Deploy**.
 
+Private repositories, SSH deploy keys, more than one repository, and tests that confirm the source is not
+publicly reachable are covered step by step in the blog guide:
+`site/blog/milesweb-secure-deploy/` (https://shaikhismail.com/blog/milesweb-secure-deploy/).
+
 ## Publishing an update
 
 cPanel → Git Version Control → Manage → **Pull or Deploy** → *Update from Remote*, then *Deploy HEAD Commit*.
