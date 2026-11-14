@@ -4,6 +4,9 @@ All notable changes to shaikhismail.com. Versions follow MAJOR.MINOR.PATCH:
 MAJOR for a redesign, MINOR for new sections or features, PATCH for fixes and content updates.
 Update with `python scripts/bump_version.py <version> "<notes>"`.
 
+## [2.6.0] - 2026-11-14
+- Free Tools menu grouped by industry; industry software on the tools page with filters
+
 ## [2.5.0] - 2026-11-03
 - updated resume and added new project
 
