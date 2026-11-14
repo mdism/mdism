@@ -8,7 +8,8 @@ This repo holds two things:
 ```
 site/
 ├── index.html                 Home page
-├── tools/index.html           Free tools page (edit the TOOLS list at the bottom)
+├── tools/index.html           Free tools page
+├── assets/js/tools-data.js    Free tools list and industries (menu + tools page read this)
 ├── assets/css/site.css        Shared styles (colours, light/dark theme)
 ├── assets/js/site.js          Theme toggle, mobile menu, Ctrl+K menu, agent terminal replay
 ├── assets/img/                Resume preview, link-preview image (og.png)

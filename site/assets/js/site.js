@@ -186,6 +186,85 @@
     if (k && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) k.textContent = '⌘K';
   }
 
+  /* ============ FREE TOOLS MENU (data in tools-data.js) ============ */
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const INDUSTRIES = window.INDUSTRIES || [];
+  const ITOOLS = window.INDUSTRY_TOOLS || [];
+  const toolsIn = id => ITOOLS.filter(t => (t.industries || []).includes(id));
+  const usedIndustries = INDUSTRIES.filter(i => toolsIn(i.id).length);
+  const toolsNav = $('#toolsNav');
+  if (toolsNav && usedIndustries.length) {
+    const link = $('a', toolsNav);
+    const toolsHref = link.getAttribute('href');
+    const current = link.hasAttribute('aria-current');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'drop-btn';
+    btn.id = 'toolsDropBtn';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'toolsDrop');
+    if (current) btn.setAttribute('aria-current', 'page');
+    btn.innerHTML = 'Free Tools <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+    const panel = document.createElement('div');
+    panel.className = 'drop';
+    panel.id = 'toolsDrop';
+    panel.hidden = true;
+    panel.innerHTML = usedIndustries.map(i =>
+      `<div class="drop-group"><a class="drop-h" href="${toolsHref}?industry=${encodeURIComponent(i.id)}#industry">${esc(i.name)}</a>` +
+      toolsIn(i.id).map(t =>
+        `<a class="drop-item" href="${esc(t.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(t.name)}</b><small>${esc(t.type)}</small></a>`).join('') +
+      '</div>').join('') +
+      `<a class="drop-all" href="${toolsHref}">All free tools →</a>`;
+    toolsNav.replaceChildren(btn, panel);
+    const setOpen = open => { panel.hidden = !open; btn.setAttribute('aria-expanded', String(open)); };
+    btn.addEventListener('click', e => { e.stopPropagation(); setOpen(panel.hidden); });
+    document.addEventListener('click', e => { if (!toolsNav.contains(e.target)) setOpen(false); });
+    toolsNav.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { setOpen(false); btn.focus(); } });
+    toolsNav.addEventListener('focusout', e => { if (!toolsNav.contains(e.relatedTarget)) setOpen(false); });
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      setOpen(false);
+      if (menu) { menu.classList.remove('open'); if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false'); }
+    }));
+  }
+
+  /* ============ INDUSTRY TOOLS (tools page) ============ */
+  const igrid = $('#industryGrid');
+  const chips = $('#industryChips');
+  if (igrid && chips) {
+    const tagName = id => (INDUSTRIES.find(i => i.id === id) || { name: id }).name;
+    const contactHref = base + '#contact';
+    const param = new URLSearchParams(location.search).get('industry');
+    let active = usedIndustries.some(i => i.id === param) ? param : 'all';
+    const renderChips = () => {
+      chips.innerHTML = [{ id: 'all', name: 'All' }].concat(usedIndustries).map(i =>
+        `<button type="button" class="chip" data-id="${esc(i.id)}" aria-pressed="${i.id === active}">${esc(i.name)}</button>`).join('');
+    };
+    const renderGrid = () => {
+      const list = active === 'all' ? ITOOLS : toolsIn(active);
+      igrid.innerHTML = list.map(t => `<div class="tool live itool">
+        <div class="ico">${esc(t.icon || t.name.slice(0, 2))}</div>
+        <h3>${esc(t.name)} <span class="type">${esc(t.type)}</span></h3>
+        <p>${esc(t.desc || '')}</p>
+        <div class="tags">${(t.industries || []).map(id => `<span class="tag">${esc(tagName(id))}</span>`).join('')}</div>
+        <div class="tool-cta">
+          <a class="btn btn-primary" href="${esc(t.url)}" target="_blank" rel="noopener noreferrer">Live demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          <a class="btn btn-quiet" href="${contactHref}">Contact</a>
+        </div>
+      </div>`).join('');
+    };
+    chips.addEventListener('click', e => {
+      const b = e.target.closest('.chip');
+      if (!b) return;
+      active = b.dataset.id;
+      renderChips(); renderGrid();
+      const u = new URL(location.href);
+      if (active === 'all') u.searchParams.delete('industry'); else u.searchParams.set('industry', active);
+      history.replaceState(null, '', u);
+    });
+    renderChips(); renderGrid();
+  }
+
   /* ============ TOOLS GRID (tools page) ============ */
   const grid = $('#toolsGrid');
   if (grid && window.TOOLS) {

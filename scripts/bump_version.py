@@ -7,7 +7,7 @@ Usage (from the repo root):
 Updates:
   - site/version.json        (read by the footer)
   - CHANGELOG.md             (new entry at the top)
-  - ?v=<version> on the CSS/JS links in every site/**/*.html
+  - ?v=<version> on the CSS/JS links (site.css, site.js, tools-data.js) in every site/**/*.html
     so browsers fetch the new files instead of a cached copy
 """
 import datetime
@@ -36,7 +36,7 @@ def main():
     text = text.replace("## [", entry + "## [", 1)
     cl.write_text(text, encoding="utf-8")
 
-    pattern = re.compile(r'(assets/(?:css/site\.css|js/site\.js))(\?v=[\w.]+)?"')
+    pattern = re.compile(r'(assets/(?:css/site\.css|js/[\w-]+\.js))(\?v=[\w.]+)?"')
     for html in SITE.rglob("*.html"):
         src = html.read_text(encoding="utf-8")
         new = pattern.sub(lambda m: f'{m.group(1)}?v={version}"', src)
