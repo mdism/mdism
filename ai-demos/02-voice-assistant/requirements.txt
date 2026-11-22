@@ -1,0 +1,6 @@
+faster-whisper>=1.1
+transformers>=4.56
+torch>=2.3
+pyttsx3>=2.98
+gradio>=4.44
+requests>=2.31

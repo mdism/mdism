@@ -1,0 +1,300 @@
+{"text": "Since my doctor put me on levothyroxine I keep getting stomach pain.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "stomach pain", "serious": false}}
+{"text": "Reporting headache after using amoxicillin for a few days.", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "headache", "serious": false}}
+{"text": "After taking ibuprofen I had severe allergic reaction and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "severe allergic reaction", "serious": true}}
+{"text": "Reporting diarrhoea after using ibuprofen for a few days.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "diarrhoea", "serious": false}}
+{"text": "I had seizure on paracetamol and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "seizure", "serious": true}}
+{"text": "After taking amoxicillin I had chest pain and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "chest pain", "serious": true}}
+{"text": "Patient on metformin developed chest pain and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "chest pain", "serious": true}}
+{"text": "I started taking metformin last week and now I have itching.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "itching", "serious": false}}
+{"text": "My mother takes ibuprofen and she complains of itching every morning.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "itching", "serious": false}}
+{"text": "Got rash two days after the first dose of sertraline. Is that normal?", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "rash", "serious": false}}
+{"text": "I started taking losartan last week and now I have dry mouth.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "dry mouth", "serious": false}}
+{"text": "My mother takes losartan and she complains of muscle pain every morning.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "muscle pain", "serious": false}}
+{"text": "I started taking sertraline last week and now I have headache.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "headache", "serious": false}}
+{"text": "I started taking levothyroxine last week and now I have stomach pain.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "stomach pain", "serious": false}}
+{"text": "My amoxicillin prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "amoxicillin", "reaction": null, "serious": false}}
+{"text": "My husband was rushed to the emergency room with chest pain after his atorvastatin dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "chest pain", "serious": true}}
+{"text": "I started taking amlodipine last week and now I have stomach pain.", "label": {"is_adverse_event": true, "drug": "amlodipine", "reaction": "stomach pain", "serious": false}}
+{"text": "My husband was rushed to the emergency room with swelling of the face after his sertraline dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "swelling of the face", "serious": true}}
+{"text": "My husband was rushed to the emergency room with chest pain after his metformin dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "chest pain", "serious": true}}
+{"text": "Since my doctor put me on levothyroxine I keep getting rash.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "rash", "serious": false}}
+{"text": "My paracetamol prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "paracetamol", "reaction": null, "serious": false}}
+{"text": "My mother takes atorvastatin and she complains of muscle pain every morning.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "muscle pain", "serious": false}}
+{"text": "I had fainting on amoxicillin and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "fainting", "serious": true}}
+{"text": "Reporting dizziness after using metformin for a few days.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "dizziness", "serious": false}}
+{"text": "Got muscle pain two days after the first dose of losartan. Is that normal?", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "muscle pain", "serious": false}}
+{"text": "Since my doctor put me on sertraline I keep getting dizziness.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "dizziness", "serious": false}}
+{"text": "After taking losartan I had severe allergic reaction and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "severe allergic reaction", "serious": true}}
+{"text": "I had seizure on metformin and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "seizure", "serious": true}}
+{"text": "Reporting dry mouth after using sertraline for a few days.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "dry mouth", "serious": false}}
+{"text": "After taking cetirizine I had swelling of the face and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "swelling of the face", "serious": true}}
+{"text": "Is there a cheaper generic version of levothyroxine?", "label": {"is_adverse_event": false, "drug": "levothyroxine", "reaction": null, "serious": false}}
+{"text": "What is the shelf life of atorvastatin once the pack is opened?", "label": {"is_adverse_event": false, "drug": "atorvastatin", "reaction": null, "serious": false}}
+{"text": "Got nausea two days after the first dose of ibuprofen. Is that normal?", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "nausea", "serious": false}}
+{"text": "What is the shelf life of paracetamol once the pack is opened?", "label": {"is_adverse_event": false, "drug": "paracetamol", "reaction": null, "serious": false}}
+{"text": "Is there a cheaper generic version of losartan?", "label": {"is_adverse_event": false, "drug": "losartan", "reaction": null, "serious": false}}
+{"text": "What is the shelf life of ibuprofen once the pack is opened?", "label": {"is_adverse_event": false, "drug": "ibuprofen", "reaction": null, "serious": false}}
+{"text": "My husband was rushed to the emergency room with difficulty breathing after his levothyroxine dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "difficulty breathing", "serious": true}}
+{"text": "Is there a cheaper generic version of amlodipine?", "label": {"is_adverse_event": false, "drug": "amlodipine", "reaction": null, "serious": false}}
+{"text": "Is there a cheaper generic version of losartan?", "label": {"is_adverse_event": false, "drug": "losartan", "reaction": null, "serious": false}}
+{"text": "Patient on amlodipine developed severe allergic reaction and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "amlodipine", "reaction": "severe allergic reaction", "serious": true}}
+{"text": "Reporting dizziness after using atorvastatin for a few days.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "dizziness", "serious": false}}
+{"text": "I started taking ibuprofen last week and now I have drowsiness.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "drowsiness", "serious": false}}
+{"text": "Where can I buy losartan near me?", "label": {"is_adverse_event": false, "drug": "losartan", "reaction": null, "serious": false}}
+{"text": "My husband was rushed to the emergency room with swelling of the face after his levothyroxine dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "swelling of the face", "serious": true}}
+{"text": "I had swelling of the face on atorvastatin and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "swelling of the face", "serious": true}}
+{"text": "Where can I buy amoxicillin near me?", "label": {"is_adverse_event": false, "drug": "amoxicillin", "reaction": null, "serious": false}}
+{"text": "Got itching two days after the first dose of azithromycin. Is that normal?", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "itching", "serious": false}}
+{"text": "My husband was rushed to the emergency room with difficulty breathing after his losartan dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "difficulty breathing", "serious": true}}
+{"text": "Reporting muscle pain after using ibuprofen for a few days.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "muscle pain", "serious": false}}
+{"text": "After taking amoxicillin I had severe allergic reaction and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "severe allergic reaction", "serious": true}}
+{"text": "After taking azithromycin I had difficulty breathing and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "difficulty breathing", "serious": true}}
+{"text": "Can I take paracetamol with food?", "label": {"is_adverse_event": false, "drug": "paracetamol", "reaction": null, "serious": false}}
+{"text": "Since my doctor put me on losartan I keep getting drowsiness.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "drowsiness", "serious": false}}
+{"text": "Reporting muscle pain after using losartan for a few days.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "muscle pain", "serious": false}}
+{"text": "Got drowsiness two days after the first dose of cetirizine. Is that normal?", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "drowsiness", "serious": false}}
+{"text": "My mother takes amoxicillin and she complains of dry mouth every morning.", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "dry mouth", "serious": false}}
+{"text": "After taking omeprazole I had seizure and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "seizure", "serious": true}}
+{"text": "After taking levothyroxine I had seizure and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "seizure", "serious": true}}
+{"text": "After taking paracetamol I had chest pain and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "chest pain", "serious": true}}
+{"text": "Got diarrhoea two days after the first dose of amoxicillin. Is that normal?", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "diarrhoea", "serious": false}}
+{"text": "I had chest pain on metformin and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "chest pain", "serious": true}}
+{"text": "Can I take amoxicillin with food?", "label": {"is_adverse_event": false, "drug": "amoxicillin", "reaction": null, "serious": false}}
+{"text": "Is there a cheaper generic version of cetirizine?", "label": {"is_adverse_event": false, "drug": "cetirizine", "reaction": null, "serious": false}}
+{"text": "I started taking ibuprofen last week and now I have diarrhoea.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "diarrhoea", "serious": false}}
+{"text": "Where can I buy ibuprofen near me?", "label": {"is_adverse_event": false, "drug": "ibuprofen", "reaction": null, "serious": false}}
+{"text": "My husband was rushed to the emergency room with fainting after his metformin dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "fainting", "serious": true}}
+{"text": "Where can I buy omeprazole near me?", "label": {"is_adverse_event": false, "drug": "omeprazole", "reaction": null, "serious": false}}
+{"text": "My mother takes omeprazole and she complains of dry mouth every morning.", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "dry mouth", "serious": false}}
+{"text": "Got diarrhoea two days after the first dose of cetirizine. Is that normal?", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "diarrhoea", "serious": false}}
+{"text": "I started taking metformin last week and now I have dizziness.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "dizziness", "serious": false}}
+{"text": "Can I take sertraline with food?", "label": {"is_adverse_event": false, "drug": "sertraline", "reaction": null, "serious": false}}
+{"text": "Reporting rash after using azithromycin for a few days.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "rash", "serious": false}}
+{"text": "My husband was rushed to the emergency room with swelling of the face after his cetirizine dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "swelling of the face", "serious": true}}
+{"text": "Can I take paracetamol with food?", "label": {"is_adverse_event": false, "drug": "paracetamol", "reaction": null, "serious": false}}
+{"text": "Since my doctor put me on metformin I keep getting headache.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "headache", "serious": false}}
+{"text": "Since my doctor put me on omeprazole I keep getting muscle pain.", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "muscle pain", "serious": false}}
+{"text": "After taking sertraline I had swelling of the face and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "swelling of the face", "serious": true}}
+{"text": "Patient on omeprazole developed swelling of the face and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "swelling of the face", "serious": true}}
+{"text": "Since my doctor put me on atorvastatin I keep getting itching.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "itching", "serious": false}}
+{"text": "Got stomach pain two days after the first dose of atorvastatin. Is that normal?", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "stomach pain", "serious": false}}
+{"text": "Can I take amlodipine with food?", "label": {"is_adverse_event": false, "drug": "amlodipine", "reaction": null, "serious": false}}
+{"text": "After taking paracetamol I had swelling of the face and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "swelling of the face", "serious": true}}
+{"text": "Patient on ibuprofen developed swelling of the face and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "swelling of the face", "serious": true}}
+{"text": "Can I take metformin with food?", "label": {"is_adverse_event": false, "drug": "metformin", "reaction": null, "serious": false}}
+{"text": "Got nausea two days after the first dose of amoxicillin. Is that normal?", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "nausea", "serious": false}}
+{"text": "Is there a cheaper generic version of losartan?", "label": {"is_adverse_event": false, "drug": "losartan", "reaction": null, "serious": false}}
+{"text": "Patient on levothyroxine developed seizure and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "seizure", "serious": true}}
+{"text": "My mother takes levothyroxine and she complains of nausea every morning.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "nausea", "serious": false}}
+{"text": "Is there a cheaper generic version of ibuprofen?", "label": {"is_adverse_event": false, "drug": "ibuprofen", "reaction": null, "serious": false}}
+{"text": "Since my doctor put me on metformin I keep getting muscle pain.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "muscle pain", "serious": false}}
+{"text": "Reporting stomach pain after using azithromycin for a few days.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "stomach pain", "serious": false}}
+{"text": "I started taking cetirizine last week and now I have rash.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "rash", "serious": false}}
+{"text": "After taking levothyroxine I had chest pain and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "chest pain", "serious": true}}
+{"text": "My mother takes paracetamol and she complains of nausea every morning.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "nausea", "serious": false}}
+{"text": "Is there a cheaper generic version of metformin?", "label": {"is_adverse_event": false, "drug": "metformin", "reaction": null, "serious": false}}
+{"text": "After taking azithromycin I had severe allergic reaction and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "severe allergic reaction", "serious": true}}
+{"text": "Where can I buy ibuprofen near me?", "label": {"is_adverse_event": false, "drug": "ibuprofen", "reaction": null, "serious": false}}
+{"text": "Reporting itching after using losartan for a few days.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "itching", "serious": false}}
+{"text": "I started taking losartan last week and now I have nausea.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "nausea", "serious": false}}
+{"text": "My mother takes atorvastatin and she complains of rash every morning.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "rash", "serious": false}}
+{"text": "After taking amoxicillin I had seizure and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "seizure", "serious": true}}
+{"text": "My amlodipine prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "amlodipine", "reaction": null, "serious": false}}
+{"text": "Where can I buy sertraline near me?", "label": {"is_adverse_event": false, "drug": "sertraline", "reaction": null, "serious": false}}
+{"text": "Where can I buy metformin near me?", "label": {"is_adverse_event": false, "drug": "metformin", "reaction": null, "serious": false}}
+{"text": "Got itching two days after the first dose of omeprazole. Is that normal?", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "itching", "serious": false}}
+{"text": "Where can I buy levothyroxine near me?", "label": {"is_adverse_event": false, "drug": "levothyroxine", "reaction": null, "serious": false}}
+{"text": "Got headache two days after the first dose of atorvastatin. Is that normal?", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "headache", "serious": false}}
+{"text": "Where can I buy paracetamol near me?", "label": {"is_adverse_event": false, "drug": "paracetamol", "reaction": null, "serious": false}}
+{"text": "My amoxicillin prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "amoxicillin", "reaction": null, "serious": false}}
+{"text": "Since my doctor put me on amlodipine I keep getting dizziness.", "label": {"is_adverse_event": true, "drug": "amlodipine", "reaction": "dizziness", "serious": false}}
+{"text": "Patient on paracetamol developed fainting and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "fainting", "serious": true}}
+{"text": "What is the shelf life of atorvastatin once the pack is opened?", "label": {"is_adverse_event": false, "drug": "atorvastatin", "reaction": null, "serious": false}}
+{"text": "Patient on amlodipine developed fainting and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "amlodipine", "reaction": "fainting", "serious": true}}
+{"text": "Since my doctor put me on paracetamol I keep getting stomach pain.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "stomach pain", "serious": false}}
+{"text": "What is the shelf life of sertraline once the pack is opened?", "label": {"is_adverse_event": false, "drug": "sertraline", "reaction": null, "serious": false}}
+{"text": "My mother takes paracetamol and she complains of dry mouth every morning.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "dry mouth", "serious": false}}
+{"text": "My azithromycin prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "azithromycin", "reaction": null, "serious": false}}
+{"text": "Can I take sertraline with food?", "label": {"is_adverse_event": false, "drug": "sertraline", "reaction": null, "serious": false}}
+{"text": "Where can I buy omeprazole near me?", "label": {"is_adverse_event": false, "drug": "omeprazole", "reaction": null, "serious": false}}
+{"text": "I started taking atorvastatin last week and now I have dry mouth.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "dry mouth", "serious": false}}
+{"text": "Is there a cheaper generic version of losartan?", "label": {"is_adverse_event": false, "drug": "losartan", "reaction": null, "serious": false}}
+{"text": "Where can I buy levothyroxine near me?", "label": {"is_adverse_event": false, "drug": "levothyroxine", "reaction": null, "serious": false}}
+{"text": "Patient on amlodipine developed seizure and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "amlodipine", "reaction": "seizure", "serious": true}}
+{"text": "My mother takes sertraline and she complains of headache every morning.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "headache", "serious": false}}
+{"text": "My mother takes losartan and she complains of dry mouth every morning.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "dry mouth", "serious": false}}
+{"text": "My husband was rushed to the emergency room with swelling of the face after his omeprazole dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "swelling of the face", "serious": true}}
+{"text": "My husband was rushed to the emergency room with fainting after his amoxicillin dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "fainting", "serious": true}}
+{"text": "After taking sertraline I had fainting and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "fainting", "serious": true}}
+{"text": "Reporting dry mouth after using atorvastatin for a few days.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "dry mouth", "serious": false}}
+{"text": "I had fainting on sertraline and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "fainting", "serious": true}}
+{"text": "I had swelling of the face on cetirizine and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "swelling of the face", "serious": true}}
+{"text": "My mother takes azithromycin and she complains of headache every morning.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "headache", "serious": false}}
+{"text": "Patient on losartan developed swelling of the face and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "swelling of the face", "serious": true}}
+{"text": "Where can I buy ibuprofen near me?", "label": {"is_adverse_event": false, "drug": "ibuprofen", "reaction": null, "serious": false}}
+{"text": "Since my doctor put me on levothyroxine I keep getting dizziness.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "dizziness", "serious": false}}
+{"text": "Reporting drowsiness after using paracetamol for a few days.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "drowsiness", "serious": false}}
+{"text": "My husband was rushed to the emergency room with seizure after his ibuprofen dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "seizure", "serious": true}}
+{"text": "I had fainting on azithromycin and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "fainting", "serious": true}}
+{"text": "I started taking amoxicillin last week and now I have rash.", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "rash", "serious": false}}
+{"text": "Got diarrhoea two days after the first dose of omeprazole. Is that normal?", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "diarrhoea", "serious": false}}
+{"text": "I had severe allergic reaction on paracetamol and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "severe allergic reaction", "serious": true}}
+{"text": "Is there a cheaper generic version of metformin?", "label": {"is_adverse_event": false, "drug": "metformin", "reaction": null, "serious": false}}
+{"text": "I had fainting on losartan and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "fainting", "serious": true}}
+{"text": "I had difficulty breathing on losartan and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "difficulty breathing", "serious": true}}
+{"text": "My mother takes cetirizine and she complains of dizziness every morning.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "dizziness", "serious": false}}
+{"text": "Patient on losartan developed difficulty breathing and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "difficulty breathing", "serious": true}}
+{"text": "Since my doctor put me on cetirizine I keep getting stomach pain.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "stomach pain", "serious": false}}
+{"text": "I started taking atorvastatin last week and now I have diarrhoea.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "diarrhoea", "serious": false}}
+{"text": "Since my doctor put me on metformin I keep getting dry mouth.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "dry mouth", "serious": false}}
+{"text": "Got dry mouth two days after the first dose of azithromycin. Is that normal?", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "dry mouth", "serious": false}}
+{"text": "After taking amlodipine I had fainting and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "amlodipine", "reaction": "fainting", "serious": true}}
+{"text": "My amoxicillin prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "amoxicillin", "reaction": null, "serious": false}}
+{"text": "Can I take sertraline with food?", "label": {"is_adverse_event": false, "drug": "sertraline", "reaction": null, "serious": false}}
+{"text": "My mother takes sertraline and she complains of rash every morning.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "rash", "serious": false}}
+{"text": "My atorvastatin prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "atorvastatin", "reaction": null, "serious": false}}
+{"text": "Is there a cheaper generic version of losartan?", "label": {"is_adverse_event": false, "drug": "losartan", "reaction": null, "serious": false}}
+{"text": "My sertraline prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "sertraline", "reaction": null, "serious": false}}
+{"text": "I started taking amoxicillin last week and now I have drowsiness.", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "drowsiness", "serious": false}}
+{"text": "Since my doctor put me on omeprazole I keep getting dry mouth.", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "dry mouth", "serious": false}}
+{"text": "Is there a cheaper generic version of cetirizine?", "label": {"is_adverse_event": false, "drug": "cetirizine", "reaction": null, "serious": false}}
+{"text": "Reporting dry mouth after using losartan for a few days.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "dry mouth", "serious": false}}
+{"text": "I had severe allergic reaction on sertraline and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "severe allergic reaction", "serious": true}}
+{"text": "Where can I buy metformin near me?", "label": {"is_adverse_event": false, "drug": "metformin", "reaction": null, "serious": false}}
+{"text": "Since my doctor put me on paracetamol I keep getting itching.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "itching", "serious": false}}
+{"text": "My mother takes cetirizine and she complains of dry mouth every morning.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "dry mouth", "serious": false}}
+{"text": "Got headache two days after the first dose of omeprazole. Is that normal?", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "headache", "serious": false}}
+{"text": "Can I take paracetamol with food?", "label": {"is_adverse_event": false, "drug": "paracetamol", "reaction": null, "serious": false}}
+{"text": "I started taking amlodipine last week and now I have headache.", "label": {"is_adverse_event": true, "drug": "amlodipine", "reaction": "headache", "serious": false}}
+{"text": "Where can I buy paracetamol near me?", "label": {"is_adverse_event": false, "drug": "paracetamol", "reaction": null, "serious": false}}
+{"text": "My husband was rushed to the emergency room with difficulty breathing after his paracetamol dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "difficulty breathing", "serious": true}}
+{"text": "My husband was rushed to the emergency room with swelling of the face after his cetirizine dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "swelling of the face", "serious": true}}
+{"text": "My husband was rushed to the emergency room with chest pain after his cetirizine dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "chest pain", "serious": true}}
+{"text": "After taking sertraline I had seizure and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "seizure", "serious": true}}
+{"text": "Can I take metformin with food?", "label": {"is_adverse_event": false, "drug": "metformin", "reaction": null, "serious": false}}
+{"text": "Reporting stomach pain after using sertraline for a few days.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "stomach pain", "serious": false}}
+{"text": "My levothyroxine prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "levothyroxine", "reaction": null, "serious": false}}
+{"text": "Where can I buy omeprazole near me?", "label": {"is_adverse_event": false, "drug": "omeprazole", "reaction": null, "serious": false}}
+{"text": "My husband was rushed to the emergency room with seizure after his ibuprofen dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "seizure", "serious": true}}
+{"text": "After taking ibuprofen I had chest pain and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "chest pain", "serious": true}}
+{"text": "What is the shelf life of sertraline once the pack is opened?", "label": {"is_adverse_event": false, "drug": "sertraline", "reaction": null, "serious": false}}
+{"text": "After taking losartan I had chest pain and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "chest pain", "serious": true}}
+{"text": "I had severe allergic reaction on losartan and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "severe allergic reaction", "serious": true}}
+{"text": "Got itching two days after the first dose of cetirizine. Is that normal?", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "itching", "serious": false}}
+{"text": "Reporting nausea after using azithromycin for a few days.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "nausea", "serious": false}}
+{"text": "Got diarrhoea two days after the first dose of levothyroxine. Is that normal?", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "diarrhoea", "serious": false}}
+{"text": "Patient on cetirizine developed seizure and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "seizure", "serious": true}}
+{"text": "Can I take amlodipine with food?", "label": {"is_adverse_event": false, "drug": "amlodipine", "reaction": null, "serious": false}}
+{"text": "Where can I buy atorvastatin near me?", "label": {"is_adverse_event": false, "drug": "atorvastatin", "reaction": null, "serious": false}}
+{"text": "I had seizure on cetirizine and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "seizure", "serious": true}}
+{"text": "Since my doctor put me on amlodipine I keep getting itching.", "label": {"is_adverse_event": true, "drug": "amlodipine", "reaction": "itching", "serious": false}}
+{"text": "My mother takes cetirizine and she complains of stomach pain every morning.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "stomach pain", "serious": false}}
+{"text": "What is the shelf life of atorvastatin once the pack is opened?", "label": {"is_adverse_event": false, "drug": "atorvastatin", "reaction": null, "serious": false}}
+{"text": "I started taking losartan last week and now I have dizziness.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "dizziness", "serious": false}}
+{"text": "My amoxicillin prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "amoxicillin", "reaction": null, "serious": false}}
+{"text": "My losartan prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "losartan", "reaction": null, "serious": false}}
+{"text": "My levothyroxine prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "levothyroxine", "reaction": null, "serious": false}}
+{"text": "Got dizziness two days after the first dose of paracetamol. Is that normal?", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "dizziness", "serious": false}}
+{"text": "My mother takes azithromycin and she complains of muscle pain every morning.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "muscle pain", "serious": false}}
+{"text": "I had chest pain on cetirizine and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "chest pain", "serious": true}}
+{"text": "I had chest pain on azithromycin and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "chest pain", "serious": true}}
+{"text": "I started taking atorvastatin last week and now I have dizziness.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "dizziness", "serious": false}}
+{"text": "Reporting headache after using azithromycin for a few days.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "headache", "serious": false}}
+{"text": "Got dizziness two days after the first dose of azithromycin. Is that normal?", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "dizziness", "serious": false}}
+{"text": "Is there a cheaper generic version of atorvastatin?", "label": {"is_adverse_event": false, "drug": "atorvastatin", "reaction": null, "serious": false}}
+{"text": "Since my doctor put me on sertraline I keep getting headache.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "headache", "serious": false}}
+{"text": "My mother takes atorvastatin and she complains of nausea every morning.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "nausea", "serious": false}}
+{"text": "Where can I buy paracetamol near me?", "label": {"is_adverse_event": false, "drug": "paracetamol", "reaction": null, "serious": false}}
+{"text": "Reporting rash after using atorvastatin for a few days.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "rash", "serious": false}}
+{"text": "I had difficulty breathing on atorvastatin and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "difficulty breathing", "serious": true}}
+{"text": "Is there a cheaper generic version of ibuprofen?", "label": {"is_adverse_event": false, "drug": "ibuprofen", "reaction": null, "serious": false}}
+{"text": "Patient on atorvastatin developed fainting and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "fainting", "serious": true}}
+{"text": "What is the shelf life of metformin once the pack is opened?", "label": {"is_adverse_event": false, "drug": "metformin", "reaction": null, "serious": false}}
+{"text": "Got headache two days after the first dose of cetirizine. Is that normal?", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "headache", "serious": false}}
+{"text": "Since my doctor put me on cetirizine I keep getting rash.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "rash", "serious": false}}
+{"text": "What is the shelf life of metformin once the pack is opened?", "label": {"is_adverse_event": false, "drug": "metformin", "reaction": null, "serious": false}}
+{"text": "Can I take ibuprofen with food?", "label": {"is_adverse_event": false, "drug": "ibuprofen", "reaction": null, "serious": false}}
+{"text": "Is there a cheaper generic version of losartan?", "label": {"is_adverse_event": false, "drug": "losartan", "reaction": null, "serious": false}}
+{"text": "Where can I buy sertraline near me?", "label": {"is_adverse_event": false, "drug": "sertraline", "reaction": null, "serious": false}}
+{"text": "My mother takes losartan and she complains of drowsiness every morning.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "drowsiness", "serious": false}}
+{"text": "What is the shelf life of sertraline once the pack is opened?", "label": {"is_adverse_event": false, "drug": "sertraline", "reaction": null, "serious": false}}
+{"text": "After taking sertraline I had swelling of the face and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "swelling of the face", "serious": true}}
+{"text": "After taking amoxicillin I had chest pain and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "chest pain", "serious": true}}
+{"text": "I started taking metformin last week and now I have diarrhoea.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "diarrhoea", "serious": false}}
+{"text": "Reporting drowsiness after using metformin for a few days.", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "drowsiness", "serious": false}}
+{"text": "My mother takes cetirizine and she complains of dizziness every morning.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "dizziness", "serious": false}}
+{"text": "I started taking azithromycin last week and now I have drowsiness.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "drowsiness", "serious": false}}
+{"text": "Reporting stomach pain after using levothyroxine for a few days.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "stomach pain", "serious": false}}
+{"text": "Where can I buy levothyroxine near me?", "label": {"is_adverse_event": false, "drug": "levothyroxine", "reaction": null, "serious": false}}
+{"text": "Since my doctor put me on omeprazole I keep getting dizziness.", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "dizziness", "serious": false}}
+{"text": "Can I take atorvastatin with food?", "label": {"is_adverse_event": false, "drug": "atorvastatin", "reaction": null, "serious": false}}
+{"text": "Reporting stomach pain after using paracetamol for a few days.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "stomach pain", "serious": false}}
+{"text": "What is the shelf life of azithromycin once the pack is opened?", "label": {"is_adverse_event": false, "drug": "azithromycin", "reaction": null, "serious": false}}
+{"text": "Got stomach pain two days after the first dose of cetirizine. Is that normal?", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "stomach pain", "serious": false}}
+{"text": "I had fainting on atorvastatin and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "fainting", "serious": true}}
+{"text": "Patient on ibuprofen developed fainting and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "fainting", "serious": true}}
+{"text": "Since my doctor put me on sertraline I keep getting headache.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "headache", "serious": false}}
+{"text": "Is there a cheaper generic version of levothyroxine?", "label": {"is_adverse_event": false, "drug": "levothyroxine", "reaction": null, "serious": false}}
+{"text": "What is the shelf life of sertraline once the pack is opened?", "label": {"is_adverse_event": false, "drug": "sertraline", "reaction": null, "serious": false}}
+{"text": "Got nausea two days after the first dose of sertraline. Is that normal?", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "nausea", "serious": false}}
+{"text": "My husband was rushed to the emergency room with chest pain after his losartan dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "chest pain", "serious": true}}
+{"text": "After taking sertraline I had fainting and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "fainting", "serious": true}}
+{"text": "My mother takes cetirizine and she complains of itching every morning.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "itching", "serious": false}}
+{"text": "My mother takes levothyroxine and she complains of nausea every morning.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "nausea", "serious": false}}
+{"text": "I had chest pain on omeprazole and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "chest pain", "serious": true}}
+{"text": "My mother takes losartan and she complains of headache every morning.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "headache", "serious": false}}
+{"text": "Reporting dry mouth after using atorvastatin for a few days.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "dry mouth", "serious": false}}
+{"text": "I had swelling of the face on paracetamol and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "swelling of the face", "serious": true}}
+{"text": "My mother takes omeprazole and she complains of diarrhoea every morning.", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "diarrhoea", "serious": false}}
+{"text": "My sertraline prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "sertraline", "reaction": null, "serious": false}}
+{"text": "Since my doctor put me on paracetamol I keep getting diarrhoea.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "diarrhoea", "serious": false}}
+{"text": "I had seizure on atorvastatin and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "seizure", "serious": true}}
+{"text": "Since my doctor put me on ibuprofen I keep getting muscle pain.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "muscle pain", "serious": false}}
+{"text": "I started taking azithromycin last week and now I have diarrhoea.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "diarrhoea", "serious": false}}
+{"text": "After taking losartan I had difficulty breathing and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "difficulty breathing", "serious": true}}
+{"text": "Where can I buy cetirizine near me?", "label": {"is_adverse_event": false, "drug": "cetirizine", "reaction": null, "serious": false}}
+{"text": "What is the shelf life of cetirizine once the pack is opened?", "label": {"is_adverse_event": false, "drug": "cetirizine", "reaction": null, "serious": false}}
+{"text": "My losartan prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "losartan", "reaction": null, "serious": false}}
+{"text": "Where can I buy cetirizine near me?", "label": {"is_adverse_event": false, "drug": "cetirizine", "reaction": null, "serious": false}}
+{"text": "My husband was rushed to the emergency room with fainting after his cetirizine dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "fainting", "serious": true}}
+{"text": "After taking sertraline I had difficulty breathing and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "difficulty breathing", "serious": true}}
+{"text": "My atorvastatin prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "atorvastatin", "reaction": null, "serious": false}}
+{"text": "Is there a cheaper generic version of amlodipine?", "label": {"is_adverse_event": false, "drug": "amlodipine", "reaction": null, "serious": false}}
+{"text": "What is the shelf life of atorvastatin once the pack is opened?", "label": {"is_adverse_event": false, "drug": "atorvastatin", "reaction": null, "serious": false}}
+{"text": "Reporting muscle pain after using azithromycin for a few days.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "muscle pain", "serious": false}}
+{"text": "I had difficulty breathing on levothyroxine and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "difficulty breathing", "serious": true}}
+{"text": "I had chest pain on losartan and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "chest pain", "serious": true}}
+{"text": "Where can I buy cetirizine near me?", "label": {"is_adverse_event": false, "drug": "cetirizine", "reaction": null, "serious": false}}
+{"text": "Since my doctor put me on azithromycin I keep getting dry mouth.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "dry mouth", "serious": false}}
+{"text": "Got drowsiness two days after the first dose of omeprazole. Is that normal?", "label": {"is_adverse_event": true, "drug": "omeprazole", "reaction": "drowsiness", "serious": false}}
+{"text": "Where can I buy omeprazole near me?", "label": {"is_adverse_event": false, "drug": "omeprazole", "reaction": null, "serious": false}}
+{"text": "Where can I buy cetirizine near me?", "label": {"is_adverse_event": false, "drug": "cetirizine", "reaction": null, "serious": false}}
+{"text": "What is the shelf life of losartan once the pack is opened?", "label": {"is_adverse_event": false, "drug": "losartan", "reaction": null, "serious": false}}
+{"text": "My ibuprofen prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "ibuprofen", "reaction": null, "serious": false}}
+{"text": "After taking ibuprofen I had fainting and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "ibuprofen", "reaction": "fainting", "serious": true}}
+{"text": "I started taking azithromycin last week and now I have nausea.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "nausea", "serious": false}}
+{"text": "What is the shelf life of cetirizine once the pack is opened?", "label": {"is_adverse_event": false, "drug": "cetirizine", "reaction": null, "serious": false}}
+{"text": "After taking amlodipine I had fainting and was admitted to hospital.", "label": {"is_adverse_event": true, "drug": "amlodipine", "reaction": "fainting", "serious": true}}
+{"text": "Is there a cheaper generic version of amlodipine?", "label": {"is_adverse_event": false, "drug": "amlodipine", "reaction": null, "serious": false}}
+{"text": "My omeprazole prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "omeprazole", "reaction": null, "serious": false}}
+{"text": "Since my doctor put me on losartan I keep getting headache.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "headache", "serious": false}}
+{"text": "My husband was rushed to the emergency room with chest pain after his levothyroxine dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "chest pain", "serious": true}}
+{"text": "I started taking azithromycin last week and now I have headache.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "headache", "serious": false}}
+{"text": "I started taking cetirizine last week and now I have stomach pain.", "label": {"is_adverse_event": true, "drug": "cetirizine", "reaction": "stomach pain", "serious": false}}
+{"text": "My mother takes paracetamol and she complains of rash every morning.", "label": {"is_adverse_event": true, "drug": "paracetamol", "reaction": "rash", "serious": false}}
+{"text": "Since my doctor put me on amlodipine I keep getting nausea.", "label": {"is_adverse_event": true, "drug": "amlodipine", "reaction": "nausea", "serious": false}}
+{"text": "My husband was rushed to the emergency room with seizure after his losartan dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "losartan", "reaction": "seizure", "serious": true}}
+{"text": "Got muscle pain two days after the first dose of metformin. Is that normal?", "label": {"is_adverse_event": true, "drug": "metformin", "reaction": "muscle pain", "serious": false}}
+{"text": "My husband was rushed to the emergency room with fainting after his sertraline dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "sertraline", "reaction": "fainting", "serious": true}}
+{"text": "I had chest pain on amoxicillin and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "chest pain", "serious": true}}
+{"text": "Patient on atorvastatin developed fainting and needed hospitalisation.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "fainting", "serious": true}}
+{"text": "I had severe allergic reaction on levothyroxine and stayed in hospital for three days.", "label": {"is_adverse_event": true, "drug": "levothyroxine", "reaction": "severe allergic reaction", "serious": true}}
+{"text": "What is the shelf life of amlodipine once the pack is opened?", "label": {"is_adverse_event": false, "drug": "amlodipine", "reaction": null, "serious": false}}
+{"text": "What is the shelf life of levothyroxine once the pack is opened?", "label": {"is_adverse_event": false, "drug": "levothyroxine", "reaction": null, "serious": false}}
+{"text": "Where can I buy cetirizine near me?", "label": {"is_adverse_event": false, "drug": "cetirizine", "reaction": null, "serious": false}}
+{"text": "Can I take omeprazole with food?", "label": {"is_adverse_event": false, "drug": "omeprazole", "reaction": null, "serious": false}}
+{"text": "Reporting itching after using amoxicillin for a few days.", "label": {"is_adverse_event": true, "drug": "amoxicillin", "reaction": "itching", "serious": false}}
+{"text": "What is the shelf life of atorvastatin once the pack is opened?", "label": {"is_adverse_event": false, "drug": "atorvastatin", "reaction": null, "serious": false}}
+{"text": "My paracetamol prescription ran out, how do I get a refill?", "label": {"is_adverse_event": false, "drug": "paracetamol", "reaction": null, "serious": false}}
+{"text": "Reporting rash after using atorvastatin for a few days.", "label": {"is_adverse_event": true, "drug": "atorvastatin", "reaction": "rash", "serious": false}}
+{"text": "My husband was rushed to the emergency room with chest pain after his azithromycin dose and kept overnight.", "label": {"is_adverse_event": true, "drug": "azithromycin", "reaction": "chest pain", "serious": true}}
